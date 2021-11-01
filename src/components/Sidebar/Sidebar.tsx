@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import logo from '../../assets/logo.svg'
 import avatar from '../../assets/image-avatar.jpg'
 import ThemeToggler from './ThemeToggler'
+import { themeType } from '../styled/Theme'
 
 const Aside = styled.aside`
     position: sticky;
     top: 0;
     left: 0;
     height: 100vh;
-    background-color: ${(props) => props.theme.color.sidebar.bg};
+    background-color: ${({ theme }: themeType) => theme.color.sidebar.bg};
     color: white;
     width: fit-content;
     border-radius: 0px 20px 20px 0px;

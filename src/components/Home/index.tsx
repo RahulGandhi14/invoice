@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import App from '../../App'
+import Header from './Header'
 
 const Wrapper = styled.div`
     width: 100%;
@@ -11,7 +12,9 @@ const Wrapper = styled.div`
 const Home = () => {
     return (
         <App>
-            <Wrapper>Hello Brother</Wrapper>
+            <Wrapper>
+                <Header />
+            </Wrapper>
         </App>
     )
 }
