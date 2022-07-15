@@ -10,6 +10,7 @@ const Aside = styled.aside`
     top: 0;
     left: 0;
     height: 100vh;
+    z-index: 15;
     background-color: ${({ theme }: themeType) => theme.color.sidebar.bg};
     color: white;
     width: fit-content;

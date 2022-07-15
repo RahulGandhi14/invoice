@@ -28,10 +28,13 @@ const Button = styled.button`
         margin-right: 0.5rem;
     }
 `
+type NewInvoiceBtnPropType = {
+    setOpen: (state: boolean) => void
+}
 
-const NewInvoiceBtn = () => {
+const NewInvoiceBtn: React.FC<NewInvoiceBtnPropType> = ({ setOpen }) => {
     return (
-        <Button>
+        <Button onClick={() => setOpen(true)}>
             <span>
                 <img src={plusIcon} alt="Plus icon" />
             </span>

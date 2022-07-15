@@ -9,7 +9,12 @@ const ThemeToggler: React.FC<propType> = ({ toggleTheme }) => {
     const theme = useContext(ThemeContext)
 
     return (
-        <img {...theme.icon} className="themeToggler" onClick={toggleTheme} />
+        <img
+            {...theme.icon}
+            className="themeToggler"
+            onClick={toggleTheme}
+            alt="theme toggle icon"
+        />
     )
 }
 

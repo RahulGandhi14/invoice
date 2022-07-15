@@ -24,7 +24,11 @@ const FlexContainer = styled.div`
     gap: 2rem;
 `
 
-const Header = () => {
+type HeaderPropType = {
+    setOpen: (state: boolean) => void
+}
+
+const Header: React.FC<HeaderPropType> = ({ setOpen }) => {
     return (
         <FlexContainer>
             <div>
@@ -33,7 +37,7 @@ const Header = () => {
             </div>
             <FlexContainer>
                 <Filter />
-                <NewInvoiceBtn />
+                <NewInvoiceBtn setOpen={setOpen} />
             </FlexContainer>
         </FlexContainer>
     )

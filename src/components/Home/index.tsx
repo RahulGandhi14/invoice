@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import App from '../../App'
+import InvoiceForm from '../InvoiceForm'
 import Header from './Header'
 
 const Wrapper = styled.div`
@@ -10,10 +12,13 @@ const Wrapper = styled.div`
 `
 
 const Home = () => {
+    const [open, setOpen] = useState<boolean>(false)
+
     return (
         <App>
+            <InvoiceForm open={open} setOpen={setOpen} />
             <Wrapper>
-                <Header />
+                <Header setOpen={setOpen} />
             </Wrapper>
         </App>
     )
