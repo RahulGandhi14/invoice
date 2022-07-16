@@ -1,69 +1,71 @@
 import moonIcon from '../../assets/icon-moon.svg'
 import sunIcon from '../../assets/icon-sun.svg'
+
 export interface themeType {
     theme: {
         color: {
             body: {
-                bg: string,
-            },
+                bg: string
+            }
             sidebar: {
-                bg: string,
-            },
+                bg: string
+            }
             form: {
-                bg: string,
-                fieldBg: string,
-                fieldBorder: string,
-            },
+                bg: string
+                fieldBg: string
+                fieldBorder: string
+            }
             btn: {
                 secondary: {
-                    bg: string,
-                    hover: string,
-                    text: string,
-                },
+                    bg: string
+                    hover: string
+                    text: string
+                }
                 tertiary: {
-                    bg: string,
-                    hover: string,
-                    text: string,
-                },
+                    bg: string
+                    hover: string
+                    text: string
+                }
                 quaternary: {
-                    bg: string,
-                    hover: string,
-                    text: string,
-                },
-            },
+                    bg: string
+                    hover: string
+                    text: string
+                }
+            }
             invoiceItem: {
-                bg: string,
-            },
+                bg: string
+            }
             invoiceStatus: {
-                bg: string,
-                text: string,
-            },
+                bg: string
+                text: string
+            }
             invoiceTable: {
-                bg: string,
-                footerBg: string,
-            },
+                bg: string
+                footerBg: string
+            }
             popup: {
-                bg: string,
-            },
+                bg: string
+            }
             dropdown: {
-                bg: string,
-                shadow: string,
-            },
+                bg: string
+                shadow: string
+            }
             checkbox: {
-                bg: string,
-            },
+                bg: string
+            }
             text: {
-                heading: string,
-                bodyA: string,
-                bodyB: string,
-                formLabel: string,
-                link: string,
-                linkHover: string,
-                placeholder: string,
-            },
-        },
-        icon: { src: any, alt: string },
-    };
+                heading: string
+                bodyA: string
+                bodyB: string
+                formLabel: string
+                formText: string
+                link: string
+                linkHover: string
+                placeholder: string
+            }
+        }
+        icon: { src: any; alt: string }
+    }
 }
 
 export const light = {
@@ -122,6 +124,7 @@ export const light = {
             bodyA: '#888eb0',
             bodyB: '#858BB2',
             formLabel: '#7E88C3',
+            formText: '#0C0E16',
             link: '#0c0e16',
             linkHover: '#7e88c3',
             placeholder: 'rgba(12, 14, 22, .4)',
@@ -186,6 +189,7 @@ export const dark = {
             bodyA: '#dfe3Fa',
             bodyB: '#ffffff',
             formLabel: '#dfe3fa',
+            formText: '#ffffff',
             link: '#ffffff',
             linkHover: '#888eb0',
             placeholder: '#fff',

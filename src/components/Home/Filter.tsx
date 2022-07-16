@@ -59,7 +59,7 @@ const Filter = () => {
                     <img
                         src={downArrow}
                         alt="DownArrow"
-                        className={openDropDown && 'active'}
+                        className={openDropDown ? 'active' : ''}
                     />
                 </span>
             </P>
