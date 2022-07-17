@@ -13,6 +13,7 @@ const Wrapper = styled.div`
 type FieldType = { valid?: boolean }
 const Field = styled.input<FieldType>`
     ${fontStyle1}
+    width: 100%;
     color: ${({ theme }: themeType) => theme.color.text.formText};
     font-weight: bold;
     outline: none;
@@ -36,9 +37,12 @@ const Label = styled.label<LabelType>`
     transition: color 0.3s ease 0s;
 `
 
-type InputType = { label: string; name: string }
+interface InputType extends React.InputHTMLAttributes<any> {
+    label: string
+    name: string
+}
 
-const Input: React.FC<InputType> = ({ label, name }) => {
+const Input: React.FC<InputType> = ({ label, name, ...rest }) => {
     const [field, meta] = useField(name)
 
     return (
@@ -46,7 +50,12 @@ const Input: React.FC<InputType> = ({ label, name }) => {
             <Label htmlFor={name} valid={!(meta.touched && meta.error)}>
                 {label}
             </Label>
-            <Field id={name} {...field} valid={!(meta.touched && meta.error)} />
+            <Field
+                id={name}
+                {...field}
+                {...rest}
+                valid={!(meta.touched && meta.error)}
+            />
         </Wrapper>
     )
 }
