@@ -16,6 +16,11 @@ export interface themeType {
                 fieldBorder: string
             }
             btn: {
+                primary: {
+                    bg: string
+                    hover: string
+                    text: string
+                }
                 secondary: {
                     bg: string
                     hover: string
@@ -82,6 +87,7 @@ export const light = {
             fieldBorder: '#DFE3FA',
         },
         btn: {
+            primary: { bg: '#7c5dfa', text: '#ffffff', hover: '#9277ff' },
             secondary: {
                 bg: '#f9fafe',
                 hover: '#dfe3fa',
@@ -147,6 +153,7 @@ export const dark = {
             fieldBorder: '#252945',
         },
         btn: {
+            primary: { bg: '#8a6dfd', text: '#ffffff', hover: '#9277ff' },
             secondary: {
                 bg: '#252945',
                 hover: '#ffffff',

@@ -1,18 +1,10 @@
 import styled from 'styled-components'
 import plusIcon from '../../assets/icon-plus.svg'
+import Button from '../styled/Button'
 
-const Button = styled.button`
-    font-family: 'Spartan', sans-serif;
-    border: none;
-    cursor: pointer;
-    border-radius: 100px;
+const Btn = styled(Button)`
     padding: 0.5rem;
     padding-right: 1rem;
-    background-color: #7c5dfa;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.25;
-    font-size: 0.75rem;
 
     & img {
         height: 0.625rem;
@@ -34,12 +26,12 @@ type NewInvoiceBtnPropType = {
 
 const NewInvoiceBtn: React.FC<NewInvoiceBtnPropType> = ({ setOpen }) => {
     return (
-        <Button onClick={() => setOpen(true)}>
+        <Btn type="button" onClick={() => setOpen(true)}>
             <span>
                 <img src={plusIcon} alt="Plus icon" />
             </span>
             New Invoice
-        </Button>
+        </Btn>
     )
 }
 

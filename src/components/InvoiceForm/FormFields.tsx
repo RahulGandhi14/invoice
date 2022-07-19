@@ -7,6 +7,9 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
+    padding-right: 2rem;
+    overflow: scroll;
+    overflow-x: hidden;
 `
 
 const FieldSet = styled.fieldset`

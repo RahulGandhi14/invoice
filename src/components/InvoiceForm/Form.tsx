@@ -2,6 +2,7 @@ import { Form as FormikForm } from 'formik'
 import { motion, Variants } from 'framer-motion'
 import styled from 'styled-components'
 import { H2 } from '../styled/Headings'
+import ActionButtons from './ActionButtons'
 import Backdrop from './Backdrop'
 import FormFields from './FormFields'
 
@@ -20,7 +21,10 @@ const StyledForm = styled(FormikForm)`
     max-width: 40rem;
     height: 100vh;
     margin-left: 6.5rem;
-    padding: 3.5rem 2.5rem 2.5rem 3.5rem;
+    padding: 3.5rem 2.5rem 2rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `
 
 const Heading2 = styled(H2)`
@@ -53,6 +57,7 @@ const Form: React.FC<FormPropType> = ({ setOpen }) => {
                 <StyledForm>
                     <Heading2>Create Invoice</Heading2>
                     <FormFields />
+                    <ActionButtons />
                 </StyledForm>
             </Wrapper>
         </>
