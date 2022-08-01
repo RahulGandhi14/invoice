@@ -22,7 +22,7 @@ export type InitialValuesType = {
         postCode: string
         country: string
     }
-    createdAt: Date
+    createdAt: Date | null
     paymentTerms: string
     description: string
     items: InvoiceItemType[]
@@ -44,7 +44,7 @@ export const initialValues: InitialValuesType = {
         country: '',
     },
     createdAt: new Date(),
-    paymentTerms: '30',
+    paymentTerms: '',
     description: '',
     items: [],
 }

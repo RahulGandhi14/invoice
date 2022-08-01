@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { fontStyle1 } from '../styled/Typography'
-import Input from './Input'
+import Input from '../styled/Input'
 
 const Wrapper = styled.div`
     display: flex;
@@ -43,6 +43,16 @@ const BillTo = styled.div`
     gap: 1.5rem;
 `
 
+const OtherInvoiceFields = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+
+    > *:nth-child(3) {
+        grid-column: 1/3;
+    }
+`
+
 const FormFields: React.FC = () => {
     return (
         <Wrapper>
@@ -63,6 +73,7 @@ const FormFields: React.FC = () => {
                         label="Client's Email"
                         name="clientEmail"
                         type="email"
+                        placeholder="e.g.email@example.com"
                     />
                     <AddressFields>
                         <Input
@@ -77,6 +88,25 @@ const FormFields: React.FC = () => {
                         <Input label="Country" name="clientAddress.country" />
                     </AddressFields>
                 </BillTo>
+            </FieldSet>
+            <FieldSet>
+                <OtherInvoiceFields>
+                    <Input
+                        inputType="date"
+                        label="Payment Date"
+                        name="createdAt"
+                    />
+                    <Input
+                        inputType="select"
+                        label="Payment Terms"
+                        name="paymentTerms"
+                    />
+                    <Input
+                        label="Description"
+                        name="description"
+                        placeholder="e.g.Graphic Design Service"
+                    />
+                </OtherInvoiceFields>
             </FieldSet>
         </Wrapper>
     )
