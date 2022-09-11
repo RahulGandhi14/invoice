@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useField } from 'formik'
-import { fontStyle1 } from '../Typography'
 import Date from './Date'
 
-import { FieldType, FieldStyles } from './styles'
+import { FieldType, FieldStyles, Label } from './styles'
 import Select from './Select'
 
 const Wrapper = styled.div`
@@ -17,21 +16,22 @@ const InputField = styled.input<FieldType>`
     ${FieldStyles}
 `
 
-type LabelType = { valid?: boolean }
-const Label = styled.label<LabelType>`
-    ${fontStyle1}
-    color: ${({ theme, valid }) =>
-        valid ? theme.color.text.formLabel : '#EC5757'};
-    transition: color 0.3s ease 0s;
-`
-
 interface InputType extends React.InputHTMLAttributes<any> {
     label: string
     name: string
+    hideLabel?: boolean
+    noBorders?: boolean
     inputType?: 'date' | 'select'
 }
 
-const Input: React.FC<InputType> = ({ label, name, inputType, ...rest }) => {
+const Input: React.FC<InputType> = ({
+    label,
+    name,
+    inputType,
+    hideLabel,
+    noBorders,
+    ...rest
+}) => {
     const [field, meta] = useField(name)
 
     const valid = !(meta.touched && meta.error)
@@ -53,16 +53,24 @@ const Input: React.FC<InputType> = ({ label, name, inputType, ...rest }) => {
 
             default:
                 return (
-                    <InputField id={name} {...field} {...rest} valid={valid} />
+                    <InputField
+                        id={name}
+                        {...field}
+                        {...rest}
+                        valid={valid}
+                        noBorders={noBorders}
+                    />
                 )
         }
     }
 
     return (
         <Wrapper>
-            <Label htmlFor={name} valid={valid}>
-                {label}
-            </Label>
+            {hideLabel ? null : (
+                <Label htmlFor={name} valid={valid}>
+                    {label}
+                </Label>
+            )}
             {RenderInput()}
         </Wrapper>
     )

@@ -4,6 +4,7 @@ import { fontStyle1 } from './Typography'
 
 interface BtnProps {
     variant?: 'primary' | 'secondary' | 'tertiary' | 'quaternary'
+    wide?: boolean
 }
 
 type BtnType = BtnProps & themeType
@@ -26,6 +27,12 @@ const Button = styled.button<BtnProps>`
         background-color: ${({ theme }: themeType) =>
             theme.color.btn.primary.hover};
     }
+
+    ${({ wide }: BtnType) =>
+        wide &&
+        css`
+            width: 100%;
+        `}
 
     ${({ theme, variant }: BtnType) =>
         variant === 'secondary' &&

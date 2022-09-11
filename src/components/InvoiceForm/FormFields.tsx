@@ -1,26 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import { fontStyle1 } from '../styled/Typography'
 import Input from '../styled/Input'
+import { Legend } from '../styled/Input/styles'
+import ItemList from './ItemList'
 
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
     padding-right: 2rem;
+    padding-bottom: 1rem;
     overflow: scroll;
     overflow-x: hidden;
 `
 
 const FieldSet = styled.fieldset`
     border: none;
-`
-
-const Legend = styled.legend`
-    ${fontStyle1}
-    margin-bottom:1.5rem;
-    font-weight: bold;
-    color: #7c5dfa;
 `
 
 const AddressFields = styled.div`
@@ -107,6 +102,9 @@ const FormFields: React.FC = () => {
                         placeholder="e.g.Graphic Design Service"
                     />
                 </OtherInvoiceFields>
+            </FieldSet>
+            <FieldSet>
+                <ItemList />
             </FieldSet>
         </Wrapper>
     )
