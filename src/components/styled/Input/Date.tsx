@@ -2,16 +2,40 @@ import styled from 'styled-components'
 import ReactDatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { FieldStyles, FieldType } from './styles'
-import { FieldInputProps } from 'formik'
+import { useFormikContext } from 'formik'
 
 const DateField = styled(ReactDatePicker)<FieldType>`
     ${FieldStyles}
 `
 
-type DateType = { field: FieldInputProps<any> } & FieldType
+type DateType = { name: string } & FieldType
 
-const Date = ({ valid, field }: DateType) => {
-    return <DateField {...field} valid={valid} />
+const DateElement = ({ name, valid }: DateType) => {
+    const {
+        setFieldValue,
+        values,
+    }: {
+        setFieldValue: (
+            field: string,
+            value: any,
+            shouldValidate?: boolean | undefined
+        ) => void
+        values: any
+    } = useFormikContext()
+
+    return (
+        <DateField
+            value={
+                values?.[name]
+                    ? new Date(String(values?.[name])).toLocaleDateString(
+                          'en-GB'
+                      )
+                    : ''
+            }
+            onChange={(value) => setFieldValue(name, value)}
+            valid={valid}
+        />
+    )
 }
 
-export default Date
+export default DateElement

@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useField } from 'formik'
-import Date from './Date'
-
+import DateElement from './Date'
 import { FieldType, FieldStyles, Label } from './styles'
 import Select from './Select'
 
@@ -49,7 +48,7 @@ const Input: React.FC<InputType> = ({
                 )
 
             case 'date':
-                return <Date field={field} valid={valid} />
+                return <DateElement name="createdAt" valid={valid} />
 
             default:
                 return (
