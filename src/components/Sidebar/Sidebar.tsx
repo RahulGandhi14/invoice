@@ -7,23 +7,30 @@ import { themeType } from '../styled/Theme'
 
 const Aside = styled.aside`
     position: sticky;
+    width: 100%;
+    height: fit-content;
     top: 0;
     left: 0;
-    height: 100vh;
     z-index: 15;
     background-color: ${({ theme }: themeType) => theme.color.sidebar.bg};
     color: white;
-    width: fit-content;
-    border-radius: 0px 20px 20px 0px;
     display: flex;
-    flex-direction: column;
+
     justify-content: space-between;
     transition: background-color 0.3s;
+
+    @media only screen and (min-width: 900px) {
+        position: sticky;
+        flex-direction: column;
+        height: 100vh;
+        width: fit-content;
+        border-radius: 0px 20px 20px 0px;
+    }
 `
 
 const Logo = styled.div`
-    width: 6.5rem;
-    height: 6.5rem;
+    width: 5.5rem;
+    height: 5.5rem;
     border-radius: 0px 20px 20px 0px;
     background-color: rgb(124, 93, 250);
     position: relative;
@@ -47,6 +54,11 @@ const Logo = styled.div`
         height: auto;
         z-index: 1;
     }
+
+    @media only screen and (min-width: 900px) {
+        width: 6.5rem;
+        height: 6.5rem;
+    }
 `
 
 const FlexContainer = styled.div`
@@ -65,12 +77,31 @@ const FlexContainer = styled.div`
         height: 36px;
         border-radius: 50%;
     }
+
+    @media only screen and (max-width: 900px) {
+        flex-direction: row;
+        gap: 2rem;
+
+        .themeToggler,
+        .avatar {
+            margin: 0;
+        }
+
+        .avatar {
+            margin-right: 2rem;
+        }
+    }
 `
 
 const Divider = styled.div`
     height: 1px;
     width: 100%;
     background-color: rgb(73, 78, 110);
+
+    @media only screen and (max-width: 900px) {
+        width: 1px;
+        height: 100%;
+    }
 `
 
 interface propType {
