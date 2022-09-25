@@ -25,6 +25,11 @@ const StyledForm = styled(FormikForm)`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @media only screen and (max-width: 900px) {
+        margin-top: 5.5rem;
+        margin-left: 0;
+    }
 `
 
 const Heading2 = styled(H2)`

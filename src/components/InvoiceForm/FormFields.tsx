@@ -30,6 +30,18 @@ const AddressFields = styled.div`
     > *:nth-child(2) {
         grid-column: 1 / 2;
     }
+
+    @media only screen and (max-width: 600px) {
+        grid-template-columns: 1fr 1fr;
+
+        > *:nth-child(1) {
+            grid-column: 1 / 3;
+        }
+
+        *:nth-child(4) {
+            grid-column: 1 / 3;
+        }
+    }
 `
 
 const BillTo = styled.div`
