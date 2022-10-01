@@ -29,8 +29,8 @@ const Aside = styled.aside`
 `
 
 const Logo = styled.div`
-    width: 5.5rem;
-    height: 5.5rem;
+    width: 4.5rem;
+    height: 4.5rem;
     border-radius: 0px 20px 20px 0px;
     background-color: rgb(124, 93, 250);
     position: relative;
@@ -50,7 +50,7 @@ const Logo = styled.div`
     }
 
     .logo {
-        width: 36px;
+        width: 30px;
         height: auto;
         z-index: 1;
     }
@@ -58,6 +58,10 @@ const Logo = styled.div`
     @media only screen and (min-width: 900px) {
         width: 6.5rem;
         height: 6.5rem;
+
+        .logo {
+            width: 36px;
+        }
     }
 `
 

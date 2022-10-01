@@ -11,10 +11,16 @@ const Wrapper = styled(FlexContainer)`
     justify-content: space-between;
 `
 
-const ActionButtons: React.FC = () => {
+type ActionButtonProps = {
+    setOpen: (open: boolean) => void
+}
+
+const ActionButtons: React.FC<ActionButtonProps> = ({ setOpen }) => {
+    const close = () => setOpen(false)
+
     return (
         <Wrapper>
-            <Button type="button" variant="secondary">
+            <Button type="button" variant="secondary" onClick={close}>
                 Discard
             </Button>
             <FlexContainer style={{ gap: '0.5rem' }}>

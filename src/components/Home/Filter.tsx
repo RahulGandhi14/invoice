@@ -27,6 +27,16 @@ const P = styled.div`
     .active {
         transform: rotate(180deg);
     }
+
+    &::before {
+        content: 'Filter by status';
+    }
+
+    @media only screen and (max-width: 600px) {
+        &::before {
+            content: 'Filter';
+        }
+    }
 `
 
 const DropDown = styled.div`
@@ -54,7 +64,6 @@ const Filter = () => {
     return (
         <Wrapper>
             <P onClick={() => setOpenDropDown((prevState) => !prevState)}>
-                Filter by status{' '}
                 <span>
                     <img
                         src={downArrow}

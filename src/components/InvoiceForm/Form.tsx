@@ -29,6 +29,11 @@ const StyledForm = styled(FormikForm)`
     @media only screen and (max-width: 900px) {
         margin-top: 5.5rem;
         margin-left: 0;
+        height: calc(100vh - 5.5rem);
+    }
+
+    @media only screen and (max-width: 600px) {
+        padding: 2rem;
     }
 `
 
@@ -62,7 +67,7 @@ const Form: React.FC<FormPropType> = ({ setOpen }) => {
                 <StyledForm>
                     <Heading2>Create Invoice</Heading2>
                     <FormFields />
-                    <ActionButtons />
+                    <ActionButtons setOpen={setOpen} />
                 </StyledForm>
             </Wrapper>
         </>

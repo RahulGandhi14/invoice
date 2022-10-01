@@ -19,6 +19,16 @@ const Btn = styled(Button)`
         padding: 0.625rem;
         margin-right: 0.5rem;
     }
+
+    &::after {
+        content: 'New Invoice';
+    }
+
+    @media only screen and (max-width: 600px) {
+        &::after {
+            content: 'New';
+        }
+    }
 `
 type NewInvoiceBtnPropType = {
     setOpen: (state: boolean) => void
@@ -30,7 +40,6 @@ const NewInvoiceBtn: React.FC<NewInvoiceBtnPropType> = ({ setOpen }) => {
             <span>
                 <img src={plusIcon} alt="Plus icon" />
             </span>
-            New Invoice
         </Btn>
     )
 }

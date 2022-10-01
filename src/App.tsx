@@ -21,7 +21,7 @@ const Main = styled.main`
     padding: 4.5rem 3rem;
 
     @media only screen and (max-width: 900px) {
-        padding-top: 3.5rem;
+        padding: 2rem 1.5rem;
         flex: 1;
     }
 `
