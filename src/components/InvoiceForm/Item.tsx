@@ -3,7 +3,6 @@ import React from 'react'
 import styled from 'styled-components'
 import Input from '../styled/Input'
 import DeleteIcon from '../../assets/icon-delete.svg'
-import { fontStyle1 } from '../styled/Typography'
 
 const Wrapper = styled.div`
     display: grid;
@@ -13,21 +12,9 @@ const Wrapper = styled.div`
     margin-bottom: 1rem;
 `
 
-const TotalWrapper = styled.div`
-    line-height: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-`
-
 const DeleteButton = styled.img`
     align-self: center;
     cursor: pointer;
-`
-
-const TotalCount = styled.span`
-    ${fontStyle1};
-    font-weight: bold;
 `
 
 type ItemType = {

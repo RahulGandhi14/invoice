@@ -1,5 +1,11 @@
 import * as Yup from 'yup'
 
+export enum EInvoiceStatus {
+    PENDING = 'pending',
+    PAID = 'paid',
+    DRAFT = 'draft',
+}
+
 export type InvoiceItemType = {
     name: string
     quantity: number
@@ -8,6 +14,10 @@ export type InvoiceItemType = {
 }
 
 export type InitialValuesType = {
+    id?: string
+    paymentDue?: string
+    status: EInvoiceStatus
+    total?: number
     senderAddress: {
         street: string
         city: string
@@ -47,6 +57,7 @@ export const initialValues: InitialValuesType = {
     paymentTerms: '',
     description: '',
     items: [],
+    status: EInvoiceStatus.DRAFT,
 }
 
 export const validationSchema = Yup.object().shape({

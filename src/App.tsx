@@ -19,6 +19,7 @@ const Main = styled.main`
     width: 100%;
     height: 100vh;
     padding: 4.5rem 3rem;
+    overflow-y: scroll;
 
     @media only screen and (max-width: 900px) {
         padding: 2rem 1.5rem;

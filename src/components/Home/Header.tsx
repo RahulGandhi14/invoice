@@ -30,7 +30,7 @@ type HeaderPropType = {
 
 const Header: React.FC<HeaderPropType> = ({ setOpen }) => {
     return (
-        <FlexContainer>
+        <FlexContainer style={{ marginBottom: '3rem' }}>
             <div>
                 <Heading>Invoices</Heading>
                 <SubHeading>There are total 5 invoices.</SubHeading>
