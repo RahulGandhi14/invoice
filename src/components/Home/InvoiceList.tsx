@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import InvoiceItem from './InvoiceItem'
-import invoices from '../../data/data.json'
+import { useAppSelector } from '../../redux/hooks'
 
 const Wrapper = styled('div')`
     display: flex;
@@ -10,6 +10,8 @@ const Wrapper = styled('div')`
 `
 
 const InvoiceList = () => {
+    const invoices = useAppSelector((state) => state.invoices)
+
     return (
         <Wrapper>
             {invoices?.length
