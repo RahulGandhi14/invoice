@@ -1,8 +1,9 @@
-import { FieldArrayRenderProps } from 'formik'
-import React from 'react'
+import { FieldArrayRenderProps, useFormikContext } from 'formik'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import Input from '../styled/Input'
 import DeleteIcon from '../../assets/icon-delete.svg'
+import { InitialValuesType } from '../../data/Form'
 
 const Wrapper = styled.div`
     display: grid;
@@ -23,6 +24,15 @@ type ItemType = {
 }
 
 const Item: React.FC<ItemType> = ({ idx, helpers }) => {
+    const { values, setFieldValue } = useFormikContext<InitialValuesType>()
+
+    useEffect(() => {
+        setFieldValue(
+            `items[${idx}].total`,
+            values.items[idx].quantity * values.items[idx].price
+        )
+    }, [values.items[idx].quantity, values.items[idx].price, values])
+
     const hideLabel = idx > 0
 
     return (
@@ -33,11 +43,13 @@ const Item: React.FC<ItemType> = ({ idx, helpers }) => {
                 hideLabel={hideLabel}
             />
             <Input
+                type="number"
                 label="Qty."
                 name={`items[${idx}].quantity`}
                 hideLabel={hideLabel}
             />
             <Input
+                type="number"
                 label="Price"
                 name={`items[${idx}].price`}
                 hideLabel={hideLabel}

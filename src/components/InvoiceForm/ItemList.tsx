@@ -12,7 +12,7 @@ const ItemListLegend = styled(Legend)`
 `
 
 const ItemList: React.FC = () => {
-    const { values }: { values: InitialValuesType } = useFormikContext()
+    const { values } = useFormikContext<InitialValuesType>()
 
     return (
         <>
