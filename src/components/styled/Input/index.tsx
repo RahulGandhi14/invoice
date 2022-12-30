@@ -48,7 +48,7 @@ const Input: React.FC<InputType> = ({
                 )
 
             case 'date':
-                return <DateElement name="createdAt" valid={valid} />
+                return <DateElement name={name} valid={valid} />
 
             default:
                 return (

@@ -6,13 +6,14 @@ import { fontStyle1 } from '../styled/Typography'
 import ArrowImage from '../../assets/icon-arrow-right.svg'
 import { InitialValuesType } from '../../data/Form'
 import moment from 'moment'
+import { themeType } from '../styled/Theme'
 
 const Container = styled(motion.a)`
     display: grid;
     grid-template-columns: 4rem 8rem 1fr min-content min-content min-content;
     gap: 1.5rem;
     align-items: center;
-    background: white;
+    background: ${({ theme }: themeType) => theme.color.invoiceItem.bg};
     padding: 1rem;
     border: 1px solid transparent;
     border-radius: 8px;
@@ -58,9 +59,9 @@ const InvoiceItem = ({ invoice }: InvoiceItemProps) => {
                 <Hash>#</Hash>
                 {invoice?.id}
             </H4>
-            <Text>{`Due ${moment(invoice.paymentDue).format(
-                'DD MMM YYYY'
-            )}`}</Text>
+            <Text>
+                {`Due ${moment(invoice.paymentDue).format('DD MMM YYYY')}`}
+            </Text>
             <Text>{invoice.clientName}</Text>
             <Total>
                 <Rupee>₹</Rupee>

@@ -1,5 +1,6 @@
 const FIRST = 65 // "A" -> Ascii -> 65
 const LAST = 90 // "Z" -> Ascii -> 90
+const MAX_ALLOWED_DIGIT = 10
 export const getNextId = (prevId: string): string => {
     // Function assumes, whatever prevId will be passed to it'll be a valid one.
     // Id is the combination of 2 letters and 2 digits
@@ -11,13 +12,13 @@ export const getNextId = (prevId: string): string => {
     let secondChar = prevId.charCodeAt(1)
     let num = prevId.slice(2)
 
-    if (+num >= 99) {
+    if (+num >= MAX_ALLOWED_DIGIT) {
         num = padWithLeadingZeros('1')
         secondChar += 1
         if (secondChar > LAST) {
             secondChar = FIRST
             firstChar += 1
-            // Assuming, it'll never exceed ZZ99
+            // Assuming, it'll never exceed ZZ + MAX_ALLOWED_DIGIT
             // Though Mathematically it's possible but ...
         }
     } else {

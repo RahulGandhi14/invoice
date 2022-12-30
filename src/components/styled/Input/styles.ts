@@ -31,6 +31,7 @@ export const FieldStyles = css`
             border: none;
             padding-left: 0;
             color: ${({ theme }: themeType) => theme.color.text.bodyA};
+            background: transparent;
         `}
 `
 

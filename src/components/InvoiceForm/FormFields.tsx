@@ -100,8 +100,8 @@ const FormFields: React.FC = () => {
                 <OtherInvoiceFields>
                     <Input
                         inputType="date"
-                        label="Payment Date"
-                        name="createdAt"
+                        label="Invoice Date"
+                        name="paymentDue"
                     />
                     <Input
                         inputType="select"

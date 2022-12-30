@@ -6,6 +6,8 @@ import {
     InitialValuesType,
     validationSchema,
 } from '../../data/Form'
+import { useAppDispatch } from '../../redux/hooks'
+import { createInvoice } from '../../redux/invoice/actions'
 import Form from './Form'
 
 type InvoiceFormPropType = {
@@ -14,8 +16,11 @@ type InvoiceFormPropType = {
 }
 
 const InvoiceForm: React.FC<InvoiceFormPropType> = ({ open, setOpen }) => {
+    const dispatch = useAppDispatch()
+
     const onSubmit = (values: InitialValuesType) => {
-        console.log(values)
+        dispatch(createInvoice(values))
+        setOpen(false)
     }
 
     return (

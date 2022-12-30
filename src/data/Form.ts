@@ -32,7 +32,7 @@ export type InitialValuesType = {
         postCode: string
         country: string
     }
-    createdAt: Date | ''
+    createdAt?: Date | ''
     paymentTerms: string
     description: string
     items: InvoiceItemType[]
@@ -54,6 +54,7 @@ export const initialValues: InitialValuesType = {
         country: '',
     },
     createdAt: '',
+    paymentDue: '',
     paymentTerms: '',
     description: '',
     items: [],
@@ -77,7 +78,7 @@ export const validationSchema = Yup.object().shape({
         postCode: Yup.string().required('- All fields must be filled.'),
         country: Yup.string().required('- All fields must be filled.'),
     }),
-    createdAt: Yup.date().required('- All fields must be filled.'),
+    paymentDue: Yup.date().required('- All fields must be filled.'),
     paymentTerms: Yup.string().required('- All fields must be filled.'),
     description: Yup.string().required('- All fields must be filled.'),
     items: Yup.array()
