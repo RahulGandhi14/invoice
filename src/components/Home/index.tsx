@@ -16,13 +16,13 @@ const Home = () => {
     const [open, setOpen] = useState<boolean>(false)
 
     return (
-        <App>
+        <>
             <InvoiceForm open={open} setOpen={setOpen} />
             <Wrapper>
                 <Header setOpen={setOpen} />
                 <InvoiceList />
             </Wrapper>
-        </App>
+        </>
     )
 }
 

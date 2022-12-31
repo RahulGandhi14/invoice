@@ -18,6 +18,7 @@ const Container = styled(motion.a)`
     border: 1px solid transparent;
     border-radius: 8px;
     transition: border 0.3s, background 0.3s;
+    text-decoration: none;
 
     :hover {
         border-color: #7c5dfa;
@@ -54,10 +55,10 @@ type InvoiceItemProps = { invoice: InitialValuesType }
 
 const InvoiceItem = ({ invoice }: InvoiceItemProps) => {
     return (
-        <Container>
+        <Container href={`/invoice/${invoice.id}`}>
             <H4>
                 <Hash>#</Hash>
-                {invoice?.id}
+                {invoice.id}
             </H4>
             <Text>
                 {`Due ${moment(invoice.paymentDue).format('DD MMM YYYY')}`}
