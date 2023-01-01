@@ -8,7 +8,7 @@ export const PageWrapper = styled('div')`
     margin: auto;
 `
 
-export const CardWrapper = css`
+export const CardStyles = css`
     background: ${({ theme }: themeType) => theme.color.invoiceItem.bg};
     transition: background 0.3s ease 0s;
     padding: 1.5rem;

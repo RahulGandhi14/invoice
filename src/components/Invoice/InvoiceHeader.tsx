@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import { EInvoiceStatus } from '../../data/Form'
 import Button from '../styled/Button'
 import InvoiceStatus from '../styled/InvoiceStatus'
-import { CardWrapper } from '../styled/shared'
+import { CardStyles } from '../styled/shared'
 import { fontStyle1 } from '../styled/Typography'
 
 const Card = styled('div')`
-    ${CardWrapper}
+    ${CardStyles}
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1.5rem;
 `
 
 const Text = styled('p')`

@@ -40,6 +40,7 @@ export interface themeType {
             invoiceItem: {
                 bg: string
                 shadow: string
+                hash: string
             }
             invoiceStatus: {
                 bg: string
@@ -108,6 +109,7 @@ export const light = {
         invoiceItem: {
             bg: '#ffffff',
             shadow: 'rgba(72, 84, 159, 0.100397)',
+            hash: '#7e88c3',
         },
         invoiceStatus: {
             bg: 'rgba(55, 59, 83, 0.06)',
@@ -175,6 +177,7 @@ export const dark = {
         invoiceItem: {
             bg: '#1e2139',
             shadow: 'rgba(72, 84, 159, 0.100397)',
+            hash: '#7e88c3',
         },
         invoiceStatus: {
             bg: 'rgba(223, 227, 250, .06)',

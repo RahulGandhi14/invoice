@@ -35,7 +35,7 @@ const Container = styled(motion.a)`
 
 const Heading = styled(H4)`
     span {
-        color: #7e88c3;
+        color: ${({ theme }: themeType) => theme.color.invoiceItem.hash};
     }
 
     @media only screen and (max-width: 768px) {
