@@ -31,7 +31,13 @@ const Item: React.FC<ItemType> = ({ idx, helpers }) => {
             `items[${idx}].total`,
             values.items[idx].quantity * values.items[idx].price
         )
-    }, [values.items[idx].quantity, values.items[idx].price, values])
+    }, [
+        idx,
+        values,
+        setFieldValue,
+        values.items[idx].price,
+        values.items[idx].quantity,
+    ])
 
     const hideLabel = idx > 0
 

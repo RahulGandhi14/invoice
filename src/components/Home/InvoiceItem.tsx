@@ -11,7 +11,7 @@ import { themeType } from '../styled/Theme'
 const Container = styled(motion.a)`
     display: grid;
     grid-template-columns: 4rem 8rem 1fr min-content min-content min-content;
-    gap: 1.5rem;
+    column-gap: 1.5rem;
     align-items: center;
     background: ${({ theme }: themeType) => theme.color.invoiceItem.bg};
     padding: 1rem;
@@ -27,48 +27,87 @@ const Container = styled(motion.a)`
     :focus-visible {
         outline: 2px dotted #7c5dfa;
     }
+
+    @media only screen and (max-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+    }
 `
 
-const Hash = styled('span')`
-    color: #7e88c3;
+const Heading = styled(H4)`
+    span {
+        color: #7e88c3;
+    }
+
+    @media only screen and (max-width: 768px) {
+        grid-area: 1 / 1 /2 / 2;
+        margin-bottom: 1.25rem;
+    }
 `
 
-const Text = styled('div')`
+const DueDate = styled('span')`
     ${fontStyle1}
+
+    @media only screen and (max-width: 768px) {
+        grid-area: 2 / 1 / 3 / 2;
+        margin-bottom: 0.25rem;
+    }
 `
 
-const Rupee = styled('span')`
-    margin-right: 0.2rem;
+const ClientName = styled('span')`
+    ${fontStyle1}
+
+    @media only screen and (max-width: 768px) {
+        grid-area: 1 / 2 / 2/ 3;
+        align-self: baseline;
+        justify-self: end;
+    }
 `
 
 const Total = styled(H3)`
     grid-area: 1 / 4 / 2 / 5;
+
+    span {
+        margin-right: 0.2rem;
+    }
+
+    @media only screen and (max-width: 768px) {
+        grid-area: 3 / 1 / 4 / 2;
+    }
 `
 
-const InvoiceStatusWrapper = styled(InvoiceStatus)`
-    grid-area: 1 / 5 / 2 / 6;
+const InvoiceStatusWrapper = styled('div')`
+    @media only screen and (max-width: 768px) {
+        grid-area: 2 / 2 / span 2 / 3;
+        justify-self: end;
+    }
 `
 
-const Arrow = styled('img')``
+const Arrow = styled('img')`
+    @media only screen and (max-width: 768px) {
+        display: none;
+    }
+`
 
 type InvoiceItemProps = { invoice: InitialValuesType }
 
 const InvoiceItem = ({ invoice }: InvoiceItemProps) => {
     return (
         <Container href={`/invoice/${invoice.id}`}>
-            <H4>
-                <Hash>#</Hash>
+            <Heading>
+                <span>#</span>
                 {invoice.id}
-            </H4>
-            <Text>
+            </Heading>
+            <DueDate>
                 {`Due ${moment(invoice.paymentDue).format('DD MMM YYYY')}`}
-            </Text>
-            <Text>{invoice.clientName}</Text>
+            </DueDate>
+            <ClientName>{invoice.clientName}</ClientName>
             <Total>
-                <Rupee>₹</Rupee>
+                <span>₹</span>
                 {invoice?.total || 0}
             </Total>
-            <InvoiceStatusWrapper status={invoice.status} />
+            <InvoiceStatusWrapper>
+                <InvoiceStatus status={invoice.status} />
+            </InvoiceStatusWrapper>
             <Arrow alt="Right arrow" src={ArrowImage} />
         </Container>
     )

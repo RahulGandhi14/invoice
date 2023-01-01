@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import App from '../../App'
 import InvoiceForm from '../InvoiceForm'
 import Header from './Header'
 import InvoiceList from './InvoiceList'
