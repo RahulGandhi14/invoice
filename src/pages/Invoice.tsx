@@ -1,7 +1,12 @@
 import App from '../App'
+import Invoice from '../components/Invoice'
 
-const Invoice = () => {
-    return <App>Invoice</App>
+const InvoicePage = () => {
+    return (
+        <App>
+            <Invoice />
+        </App>
+    )
 }
 
-export default Invoice
+export default InvoicePage

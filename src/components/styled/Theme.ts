@@ -31,7 +31,7 @@ export interface themeType {
                     hover: string
                     text: string
                 }
-                quaternary: {
+                danger: {
                     bg: string
                     hover: string
                     text: string
@@ -39,6 +39,7 @@ export interface themeType {
             }
             invoiceItem: {
                 bg: string
+                shadow: string
             }
             invoiceStatus: {
                 bg: string
@@ -98,14 +99,15 @@ export const light = {
                 hover: '#0c0e16',
                 text: '#888eb0',
             },
-            quaternary: {
-                bg: '#F9FAFE',
-                hover: '#DFE3FA',
-                text: '#7E88C3',
+            danger: {
+                bg: '#EC5757',
+                hover: '#FF9797',
+                text: '#ffffff',
             },
         },
         invoiceItem: {
             bg: '#ffffff',
+            shadow: 'rgba(72, 84, 159, 0.100397)',
         },
         invoiceStatus: {
             bg: 'rgba(55, 59, 83, 0.06)',
@@ -164,14 +166,15 @@ export const dark = {
                 hover: '#1e2139',
                 text: '#dfe3fa',
             },
-            quaternary: {
-                bg: '#252945',
-                hover: '#1e2139',
-                text: '#DFE3FA',
+            danger: {
+                bg: '#EC5757',
+                hover: '#FF9797',
+                text: '#ffffff',
             },
         },
         invoiceItem: {
             bg: '#1e2139',
+            shadow: 'rgba(72, 84, 159, 0.100397)',
         },
         invoiceStatus: {
             bg: 'rgba(223, 227, 250, .06)',

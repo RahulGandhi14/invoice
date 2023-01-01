@@ -3,7 +3,7 @@ import { themeType } from './Theme'
 import { fontStyle1 } from './Typography'
 
 interface BtnProps {
-    variant?: 'primary' | 'secondary' | 'tertiary' | 'quaternary'
+    variant?: 'primary' | 'secondary' | 'tertiary' | 'danger'
     wide?: boolean
 }
 
@@ -57,13 +57,13 @@ const Button = styled.button<BtnProps>`
         `}
 
     ${({ theme, variant }: BtnType) =>
-        variant === 'quaternary' &&
+        variant === 'danger' &&
         css`
-            background: ${theme.color.btn.quaternary.bg};
-            color: ${theme.color.btn.quaternary.text};
+            background: ${theme.color.btn.danger.bg};
+            color: ${theme.color.btn.danger.text};
 
             :hover {
-                background: ${theme.color.btn.quaternary.hover};
+                background: ${theme.color.btn.danger.hover};
             }
         `}
 `

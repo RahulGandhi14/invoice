@@ -26,7 +26,7 @@ const ItemList: React.FC = () => {
                         ))}
                         <Button
                             type="button"
-                            variant="quaternary"
+                            variant="secondary"
                             wide
                             onClick={() =>
                                 helpers.push({
