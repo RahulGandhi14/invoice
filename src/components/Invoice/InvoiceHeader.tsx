@@ -1,6 +1,9 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { EInvoiceStatus } from '../../data/Form'
+import { useAppDispatch } from '../../redux/hooks'
+import { getInvoiceById, openForm } from '../../redux/invoice/actions'
 import Button from '../styled/Button'
 import InvoiceStatus from '../styled/InvoiceStatus'
 import { CardStyles } from '../styled/shared'
@@ -33,6 +36,9 @@ type InvoiceHeaderProps = {
 }
 
 const InvoiceHeader = ({ invoiceStatus }: InvoiceHeaderProps) => {
+    const params = useParams<{ id: string }>()
+    const dispatch = useAppDispatch()
+
     return (
         <Card>
             <Status>
@@ -40,7 +46,14 @@ const InvoiceHeader = ({ invoiceStatus }: InvoiceHeaderProps) => {
                 <InvoiceStatus status={invoiceStatus} />
             </Status>
             <ActionButtons>
-                <Button type="button" variant="secondary">
+                <Button
+                    type="button"
+                    variant="secondary"
+                    onClick={() => {
+                        dispatch(getInvoiceById(params.id))
+                        dispatch(openForm(true))
+                    }}
+                >
                     Edit
                 </Button>
                 <Button type="button" variant="danger">

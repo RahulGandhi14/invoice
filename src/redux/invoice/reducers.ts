@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { createInvoice, getInvoiceById } from './actions'
+import { createInvoice, getInvoiceById, openForm } from './actions'
 import { IInvoiceState } from './types'
 import invoices from '../../data/data.json'
 import { InitialValuesType } from '../../data/Form'
@@ -8,6 +8,7 @@ import { getNextId } from '../../utils/id'
 const initialState: IInvoiceState = {
     invoices: invoices as unknown as InitialValuesType[],
     currentInvoice: null,
+    openForm: false,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -32,5 +33,8 @@ export default createReducer(initialState, (builder) => {
             } else {
                 state.currentInvoice = { ...currentInvoice }
             }
+        })
+        .addCase(openForm, (state, action) => {
+            state.openForm = action.payload
         })
 })

@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import BackBtn from './BackBtn'
 import InvoiceHeader from './InvoiceHeader'
 import InvoiceBody from './InvoiceBody'
-import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { EInvoiceStatus } from '../../data/Form'
-import { useEffect } from 'react'
-import { getInvoiceById } from '../../redux/invoice/actions'
+import { useAppSelector } from '../../redux/hooks'
+import { EInvoiceStatus, InitialValuesType } from '../../data/Form'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 const Wrapper = styled(PageWrapper)`
     padding: 0 3rem;
@@ -14,14 +14,16 @@ const Wrapper = styled(PageWrapper)`
 `
 
 const Invoice = () => {
-    const dispatch = useAppDispatch()
-    const currentInvoice = useAppSelector((state) => state.currentInvoice)
+    const params = useParams<{ id: string }>()
+
+    const invoices = useAppSelector((state) => state.invoices)
+
+    const [currentInvoice, setCurrentInvoice] = useState<
+        InitialValuesType | undefined
+    >(undefined)
 
     useEffect(() => {
-        return () => {
-            // setting currentInvoice to null
-            dispatch(getInvoiceById('-1'))
-        }
+        setCurrentInvoice(invoices.find((invoice) => invoice.id === params?.id))
     }, [])
 
     return (

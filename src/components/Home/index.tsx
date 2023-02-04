@@ -1,15 +1,16 @@
-import { useState } from 'react'
-import InvoiceForm from '../InvoiceForm'
+import { useAppDispatch } from '../../redux/hooks'
+import { openForm } from '../../redux/invoice/actions'
 import { PageWrapper } from '../styled/shared'
 import Header from './Header'
 import InvoiceList from './InvoiceList'
 
 const Home = () => {
-    const [open, setOpen] = useState<boolean>(false)
+    const dispatch = useAppDispatch()
+
+    const setOpen = (state: boolean) => dispatch(openForm(state))
 
     return (
         <>
-            <InvoiceForm open={open} setOpen={setOpen} />
             <PageWrapper>
                 <Header setOpen={setOpen} />
                 <InvoiceList />

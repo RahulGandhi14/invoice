@@ -61,7 +61,7 @@ const Address = styled('address')<AddressProps>`
     text-align: ${(props) => (props.textAlign ? props.textAlign : 'end')};
     grid-area: 1 / 2 / 2 / 4;
 `
-type InvoiceBodyType = { invoice: InitialValuesType | null }
+type InvoiceBodyType = { invoice: InitialValuesType | undefined }
 
 const InvoiceBody = ({ invoice }: InvoiceBodyType) => {
     return (
