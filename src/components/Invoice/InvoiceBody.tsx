@@ -3,12 +3,13 @@ import { H3 } from '../styled/Headings'
 import { CardStyles } from '../styled/shared'
 import { themeType } from '../styled/Theme'
 import { fontStyle1, fontStyle2 } from '../styled/Typography'
+import InvoiceItems from './InvoiceItems'
 
 const Card = styled('div')`
     ${CardStyles}
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    row-gap: 1rem;
+    row-gap: 2.5rem;
 `
 
 const Text = styled('p')`
@@ -19,6 +20,8 @@ const Text = styled('p')`
 const FieldValue = styled('p')`
     font-weight: bold;
     font-size: 0.9325rem;
+    color: ${({ theme }: themeType) => theme.color.text.formText};
+    transition: color 0.3s;
 `
 
 const Dates = styled('div')`
@@ -32,6 +35,7 @@ const Id = styled(H3)`
 
     span {
         color: ${({ theme }: themeType) => theme.color.invoiceItem.hash};
+        transition: color 0.3s;
     }
 `
 
@@ -96,6 +100,7 @@ const InvoiceBody = () => {
                 <Text>Sent to</Text>
                 <FieldValue>random@gmail.com</FieldValue>
             </div>
+            <InvoiceItems />
         </Card>
     )
 }

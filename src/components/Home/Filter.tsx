@@ -53,7 +53,7 @@ const DropDown = styled.div`
     flex-direction: column;
     gap: 1rem;
     width: 12rem;
-    transition: background-color 0.3s, box-shadow: 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s;
 `
 
 const dropdownList = ['Paid', 'Pending', 'Draft']

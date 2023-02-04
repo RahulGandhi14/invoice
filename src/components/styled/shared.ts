@@ -4,7 +4,7 @@ import { themeType } from './Theme'
 export const PageWrapper = styled('div')`
     width: 100%;
     max-width: 45.625rem;
-    height: 100%;
+    height: 100vh;
     margin: auto;
 `
 

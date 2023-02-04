@@ -6,6 +6,7 @@ import InvoiceBody from './InvoiceBody'
 
 const Wrapper = styled(PageWrapper)`
     padding: 0 3rem;
+    margin-bottom: 3rem;
 `
 
 const Invoice = () => {
