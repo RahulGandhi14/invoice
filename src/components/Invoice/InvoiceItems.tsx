@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { InvoiceItemType } from '../../data/Form'
 import { themeType } from '../styled/Theme'
 import { fontStyle1 } from '../styled/Typography'
 
@@ -88,7 +89,12 @@ const InvoiceItemsTable = styled('table')`
     }
 `
 
-const InvoiceItems = () => {
+type InvoiceItemsProps = {
+    items: InvoiceItemType[]
+    total: number
+}
+
+const InvoiceItems = ({ items, total }: InvoiceItemsProps) => {
     return (
         <Wrapper>
             <InvoiceItemsTable>
@@ -101,25 +107,21 @@ const InvoiceItems = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Item1</td>
-                        <td>1</td>
-                        <td>₹ 102.33</td>
-                        <td>₹ 102.33</td>
-                    </tr>
-                    <tr>
-                        <td>Item1</td>
-                        <td>1</td>
-                        <td>₹ 102.33</td>
-                        <td>₹ 102.33</td>
-                    </tr>
+                    {items.map((item) => (
+                        <tr>
+                            <td>{item.name}</td>
+                            <td>{item.quantity}</td>
+                            <td>₹ {item.price}</td>
+                            <td>₹ {item.total}</td>
+                        </tr>
+                    ))}
                 </tbody>
                 <tfoot>
                     <tr>
                         <td>Amount Due</td>
                         <td></td>
                         <td></td>
-                        <td>₹ 304.66</td>
+                        <td>₹ {total}</td>
                     </tr>
                 </tfoot>
             </InvoiceItemsTable>

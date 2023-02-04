@@ -1,4 +1,6 @@
+import moment from 'moment'
 import styled from 'styled-components'
+import { InitialValuesType } from '../../data/Form'
 import { H3 } from '../styled/Headings'
 import { CardStyles } from '../styled/shared'
 import { themeType } from '../styled/Theme'
@@ -28,6 +30,7 @@ const Dates = styled('div')`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-height: 100px;
 `
 
 const Id = styled(H3)`
@@ -58,49 +61,62 @@ const Address = styled('address')<AddressProps>`
     text-align: ${(props) => (props.textAlign ? props.textAlign : 'end')};
     grid-area: 1 / 2 / 2 / 4;
 `
+type InvoiceBodyType = { invoice: InitialValuesType | null }
 
-const InvoiceBody = () => {
+const InvoiceBody = ({ invoice }: InvoiceBodyType) => {
     return (
         <Card>
             <div>
                 <Id>
-                    <span>#</span>GS0200
+                    <span>#</span>
+                    {invoice?.id}
                 </Id>
-                <Text>RENTAL INCOME</Text>
+                <Text>{invoice?.description}</Text>
             </div>
             <Address>
-                <span>A, Selborne Mansions</span>
-                <span>United Kingdom</span>
-                <span>Bradford</span>
-                <span>BD9 4NP</span>
+                <span>{invoice?.senderAddress.street}</span>
+                <span>{invoice?.senderAddress.city}</span>
+                <span>{invoice?.senderAddress.postCode}</span>
+                <span>{invoice?.senderAddress.country}</span>
             </Address>
             <Dates>
                 <div>
                     <Text>Invoice Date</Text>
-                    <FieldValue>25 Dec 2022</FieldValue>
+                    <FieldValue>
+                        {invoice?.createdAt
+                            ? moment(invoice.createdAt).format('DD MMM YYYY')
+                            : 'N/A'}
+                    </FieldValue>
                 </div>
                 <div>
                     <Text>Payment Due</Text>
-                    <FieldValue>31 Dec 2022</FieldValue>
+                    <FieldValue>
+                        {invoice?.paymentDue
+                            ? moment(invoice.paymentDue).format('DD MMM YYYY')
+                            : 'N/A'}
+                    </FieldValue>
                 </div>
             </Dates>
             <div>
                 <Text>Bill to</Text>
                 <FieldValue style={{ marginBottom: '0.25rem' }}>
-                    John Cena
+                    {invoice?.clientName}
                 </FieldValue>
                 <Address textAlign="start">
-                    <span>A, Selborne Mansions</span>
-                    <span>United Kingdom</span>
-                    <span>Bradford</span>
-                    <span>BD9 4NP</span>
+                    <span>{invoice?.clientAddress.street}</span>
+                    <span>{invoice?.clientAddress.city}</span>
+                    <span>{invoice?.clientAddress.postCode}</span>
+                    <span>{invoice?.clientAddress.country}</span>
                 </Address>
             </div>
             <div>
                 <Text>Sent to</Text>
-                <FieldValue>random@gmail.com</FieldValue>
+                <FieldValue>{invoice?.clientEmail}</FieldValue>
             </div>
-            <InvoiceItems />
+            <InvoiceItems
+                items={invoice?.items || []}
+                total={invoice?.total || 0}
+            />
         </Card>
     )
 }

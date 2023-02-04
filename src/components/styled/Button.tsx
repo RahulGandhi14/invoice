@@ -10,7 +10,7 @@ interface BtnProps {
 type BtnType = BtnProps & themeType
 
 const Button = styled.button<BtnProps>`
-    cursor: pointer;
+    cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
     border: none;
     outline: none;
     ${fontStyle1}

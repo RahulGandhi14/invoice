@@ -7,6 +7,8 @@ import ArrowImage from '../../assets/icon-arrow-right.svg'
 import { InitialValuesType } from '../../data/Form'
 import moment from 'moment'
 import { themeType } from '../styled/Theme'
+import { useAppDispatch } from '../../redux/hooks'
+import { getInvoiceById } from '../../redux/invoice/actions'
 
 const Container = styled(motion.a)`
     display: grid;
@@ -91,8 +93,13 @@ const Arrow = styled('img')`
 type InvoiceItemProps = { invoice: InitialValuesType }
 
 const InvoiceItem = ({ invoice }: InvoiceItemProps) => {
+    const dispatch = useAppDispatch()
+
     return (
-        <Container href={`/invoice/${invoice.id}`}>
+        <Container
+            href={`/invoice/${invoice.id}`}
+            onClick={() => dispatch(getInvoiceById(`${invoice.id}`))}
+        >
             <Heading>
                 <span>#</span>
                 {invoice.id}

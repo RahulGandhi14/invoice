@@ -28,12 +28,16 @@ const ActionButtons = styled('div')`
     gap: 0.5rem;
 `
 
-const InvoiceHeader = () => {
+type InvoiceHeaderProps = {
+    invoiceStatus: EInvoiceStatus
+}
+
+const InvoiceHeader = ({ invoiceStatus }: InvoiceHeaderProps) => {
     return (
         <Card>
             <Status>
                 <Text>Status</Text>
-                <InvoiceStatus status={EInvoiceStatus.DRAFT} />
+                <InvoiceStatus status={invoiceStatus} />
             </Status>
             <ActionButtons>
                 <Button type="button" variant="secondary">
@@ -42,7 +46,11 @@ const InvoiceHeader = () => {
                 <Button type="button" variant="danger">
                     Delete
                 </Button>
-                <Button type="button" variant="primary">
+                <Button
+                    type="button"
+                    variant="primary"
+                    disabled={invoiceStatus === EInvoiceStatus.PAID}
+                >
                     Mark As Paid
                 </Button>
             </ActionButtons>
