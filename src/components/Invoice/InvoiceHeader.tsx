@@ -1,9 +1,13 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { EInvoiceStatus } from '../../data/Form'
 import { useAppDispatch } from '../../redux/hooks'
-import { getInvoiceById, openForm } from '../../redux/invoice/actions'
+import {
+    deleteInvoice,
+    getInvoiceById,
+    openForm,
+} from '../../redux/invoice/actions'
 import Button from '../styled/Button'
 import InvoiceStatus from '../styled/InvoiceStatus'
 import { CardStyles } from '../styled/shared'
@@ -36,8 +40,14 @@ type InvoiceHeaderProps = {
 }
 
 const InvoiceHeader = ({ invoiceStatus }: InvoiceHeaderProps) => {
+    const history = useHistory()
     const params = useParams<{ id: string }>()
     const dispatch = useAppDispatch()
+
+    const deleteCurrentInvoice = () => {
+        dispatch(deleteInvoice(params.id))
+        history.push('/')
+    }
 
     return (
         <Card>
@@ -56,7 +66,11 @@ const InvoiceHeader = ({ invoiceStatus }: InvoiceHeaderProps) => {
                 >
                     Edit
                 </Button>
-                <Button type="button" variant="danger">
+                <Button
+                    type="button"
+                    variant="danger"
+                    onClick={deleteCurrentInvoice}
+                >
                     Delete
                 </Button>
                 <Button

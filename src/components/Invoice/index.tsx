@@ -17,6 +17,9 @@ const Invoice = () => {
     const params = useParams<{ id: string }>()
 
     const invoices = useAppSelector((state) => state.invoices)
+    const editCurrentInvoice = useAppSelector(
+        (state) => state.editCurrentInvoice
+    )
 
     const [currentInvoice, setCurrentInvoice] = useState<
         InitialValuesType | undefined
@@ -24,7 +27,7 @@ const Invoice = () => {
 
     useEffect(() => {
         setCurrentInvoice(invoices.find((invoice) => invoice.id === params?.id))
-    }, [])
+    }, [editCurrentInvoice])
 
     return (
         <Wrapper>

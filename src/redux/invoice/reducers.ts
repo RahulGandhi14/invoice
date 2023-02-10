@@ -1,5 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { createInvoice, getInvoiceById, openForm } from './actions'
+import {
+    createInvoice,
+    deleteInvoice,
+    editInvoice,
+    getInvoiceById,
+    openForm,
+} from './actions'
 import { IInvoiceState } from './types'
 import invoices from '../../data/data.json'
 import { InitialValuesType } from '../../data/Form'
@@ -9,6 +15,7 @@ const initialState: IInvoiceState = {
     invoices: invoices as unknown as InitialValuesType[],
     currentInvoice: null,
     openForm: false,
+    editCurrentInvoice: false,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -24,17 +31,36 @@ export default createReducer(initialState, (builder) => {
                 ...state.invoices,
             ]
         })
+        .addCase(editInvoice, (state, action) => {
+            state.invoices = state.invoices.map((invoice) => {
+                if (invoice.id === state.currentInvoice?.id) {
+                    const total = action.payload.items.reduce(
+                        (total, current) => total + current.total,
+                        0
+                    )
+                    return { ...action.payload, total }
+                }
+                return { ...invoice }
+            })
+        })
         .addCase(getInvoiceById, (state, action) => {
             let currentInvoice = state.invoices.find(
                 (invoice) => invoice.id === action.payload
             ) as unknown as InitialValuesType
             if (!currentInvoice) {
                 state.currentInvoice = null
+                state.editCurrentInvoice = false
             } else {
                 state.currentInvoice = { ...currentInvoice }
+                state.editCurrentInvoice = true
             }
         })
         .addCase(openForm, (state, action) => {
             state.openForm = action.payload
+        })
+        .addCase(deleteInvoice, (state, action) => {
+            state.invoices = state.invoices.filter(
+                (invoice) => invoice.id !== action.payload
+            )
         })
 })

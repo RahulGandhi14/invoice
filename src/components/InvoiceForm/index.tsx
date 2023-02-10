@@ -7,7 +7,7 @@ import {
     validationSchema,
 } from '../../data/Form'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { createInvoice } from '../../redux/invoice/actions'
+import { createInvoice, editInvoice } from '../../redux/invoice/actions'
 import Form from './Form'
 
 type InvoiceFormPropType = {
@@ -18,6 +18,9 @@ type InvoiceFormPropType = {
 const InvoiceForm: React.FC<InvoiceFormPropType> = ({ open, setOpen }) => {
     const dispatch = useAppDispatch()
     const currentInvoice = useAppSelector((state) => state.currentInvoice)
+    const editCurrentInvoice = useAppSelector(
+        (state) => state.editCurrentInvoice
+    )
 
     const [initalInvoiceValues, setInitialInvoiceValues] =
         useState(initialValues)
@@ -28,10 +31,14 @@ const InvoiceForm: React.FC<InvoiceFormPropType> = ({ open, setOpen }) => {
         } else {
             setInitialInvoiceValues(initialValues)
         }
-    }, [])
+    }, [currentInvoice])
 
     const onSubmit = (values: InitialValuesType) => {
-        dispatch(createInvoice(values))
+        if (editCurrentInvoice) {
+            dispatch(editInvoice(values))
+        } else {
+            dispatch(createInvoice(values))
+        }
         setOpen(false)
     }
 
@@ -39,6 +46,7 @@ const InvoiceForm: React.FC<InvoiceFormPropType> = ({ open, setOpen }) => {
         <AnimatePresence>
             {open ? (
                 <Formik
+                    enableReinitialize
                     initialValues={initalInvoiceValues}
                     validationSchema={validationSchema}
                     onSubmit={onSubmit}
