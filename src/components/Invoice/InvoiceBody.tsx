@@ -12,6 +12,11 @@ const Card = styled('div')`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 2.5rem;
+
+    @media only screen and (max-width: 700px) {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 1.5rem;
+    }
 `
 
 const Text = styled('p')`
@@ -26,11 +31,21 @@ const FieldValue = styled('p')`
     transition: color 0.3s;
 `
 
+const StatusDiv = styled('div')`
+    @media only screen and (max-width: 700px) {
+        grid-area: 1 / 1 / 2 / 3;
+    }
+`
+
 const Dates = styled('div')`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 100px;
+
+    @media only screen and (max-width: 700px) {
+        grid-area: 3 / 1 / 4 / 2;
+    }
 `
 
 const Id = styled(H3)`
@@ -60,19 +75,37 @@ const Address = styled('address')<AddressProps>`
     flex-direction: column;
     text-align: ${(props) => (props.textAlign ? props.textAlign : 'end')};
     grid-area: 1 / 2 / 2 / 4;
+
+    @media only screen and (max-width: 700px) {
+        text-align: start;
+        grid-area: 2 / 1 / 3 / 2;
+    }
 `
+
+const BillTo = styled.div`
+    @media only screen and (max-width: 700px) {
+        grid-area: 3 / 2 / 4 / 3;
+    }
+`
+
+const SentTo = styled.div`
+    @media only screen and (max-width: 700px) {
+        grid-area: 4 / 1 / 5 / 3;
+    }
+`
+
 type InvoiceBodyType = { invoice: InitialValuesType | undefined }
 
 const InvoiceBody = ({ invoice }: InvoiceBodyType) => {
     return (
         <Card>
-            <div>
+            <StatusDiv>
                 <Id>
                     <span>#</span>
                     {invoice?.id}
                 </Id>
                 <Text>{invoice?.description}</Text>
-            </div>
+            </StatusDiv>
             <Address>
                 <span>{invoice?.senderAddress.street}</span>
                 <span>{invoice?.senderAddress.city}</span>
@@ -97,7 +130,7 @@ const InvoiceBody = ({ invoice }: InvoiceBodyType) => {
                     </FieldValue>
                 </div>
             </Dates>
-            <div>
+            <BillTo>
                 <Text>Bill to</Text>
                 <FieldValue style={{ marginBottom: '0.25rem' }}>
                     {invoice?.clientName}
@@ -108,11 +141,11 @@ const InvoiceBody = ({ invoice }: InvoiceBodyType) => {
                     <span>{invoice?.clientAddress.postCode}</span>
                     <span>{invoice?.clientAddress.country}</span>
                 </Address>
-            </div>
-            <div>
+            </BillTo>
+            <SentTo>
                 <Text>Sent to</Text>
                 <FieldValue>{invoice?.clientEmail}</FieldValue>
-            </div>
+            </SentTo>
             <InvoiceItems
                 items={invoice?.items || []}
                 total={invoice?.total || 0}

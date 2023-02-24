@@ -87,6 +87,22 @@ const InvoiceItemsTable = styled('table')`
             padding-left: 0;
         }
     }
+
+    @media only screen and (max-width: 540px) {
+        & th {
+            &:nth-of-type(2),
+            &:nth-of-type(3) {
+                display: none;
+            }
+        }
+
+        & tr td {
+            &:nth-of-type(2),
+            &:nth-of-type(3) {
+                display: none;
+            }
+        }
+    }
 `
 
 type InvoiceItemsProps = {

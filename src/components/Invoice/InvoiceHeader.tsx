@@ -12,6 +12,7 @@ import Button from '../styled/Button'
 import InvoiceStatus from '../styled/InvoiceStatus'
 import { CardStyles } from '../styled/shared'
 import { fontStyle1 } from '../styled/Typography'
+import InvoiceActionButtons from './InvoiceActionButtons'
 
 const Card = styled('div')`
     ${CardStyles}
@@ -28,11 +29,20 @@ const Status = styled('div')`
     display: flex;
     align-items: center;
     gap: 1rem;
+
+    @media only screen and (max-width: 700px) {
+        width: 100%;
+        justify-content: space-between;
+    }
 `
 
 const ActionButtons = styled('div')`
     display: flex;
     gap: 0.5rem;
+
+    @media only screen and (max-width: 700px) {
+        display: none;
+    }
 `
 
 type InvoiceHeaderProps = {
@@ -40,15 +50,6 @@ type InvoiceHeaderProps = {
 }
 
 const InvoiceHeader = ({ invoiceStatus }: InvoiceHeaderProps) => {
-    const history = useHistory()
-    const params = useParams<{ id: string }>()
-    const dispatch = useAppDispatch()
-
-    const deleteCurrentInvoice = () => {
-        dispatch(deleteInvoice(params.id))
-        history.push('/')
-    }
-
     return (
         <Card>
             <Status>
@@ -56,30 +57,7 @@ const InvoiceHeader = ({ invoiceStatus }: InvoiceHeaderProps) => {
                 <InvoiceStatus status={invoiceStatus} />
             </Status>
             <ActionButtons>
-                <Button
-                    type="button"
-                    variant="secondary"
-                    onClick={() => {
-                        dispatch(getInvoiceById(params.id))
-                        dispatch(openForm(true))
-                    }}
-                >
-                    Edit
-                </Button>
-                <Button
-                    type="button"
-                    variant="danger"
-                    onClick={deleteCurrentInvoice}
-                >
-                    Delete
-                </Button>
-                <Button
-                    type="button"
-                    variant="primary"
-                    disabled={invoiceStatus === EInvoiceStatus.PAID}
-                >
-                    Mark As Paid
-                </Button>
+                <InvoiceActionButtons status={invoiceStatus} />
             </ActionButtons>
         </Card>
     )

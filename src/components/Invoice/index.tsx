@@ -11,6 +11,10 @@ import { useParams } from 'react-router-dom'
 const Wrapper = styled(PageWrapper)`
     padding: 0 3rem;
     margin-bottom: 3rem;
+
+    @media only screen and (max-width: 700px) {
+        padding: 0;
+    }
 `
 
 const Invoice = () => {
