@@ -1,10 +1,11 @@
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { EInvoiceStatus } from '../../data/Form'
 import { useAppDispatch } from '../../redux/hooks'
 import {
-    deleteInvoice,
+    deleteInvoiceId,
     getInvoiceById,
+    openDeleteInvoiceModal,
     openForm,
 } from '../../redux/invoice/actions'
 import Button from '../styled/Button'
@@ -13,13 +14,12 @@ import { CardStyles } from '../styled/shared'
 type InvoiceActionButtonsProps = { status: EInvoiceStatus }
 
 const InvoiceActionButtons = ({ status }: InvoiceActionButtonsProps) => {
-    const history = useHistory()
     const params = useParams<{ id: string }>()
     const dispatch = useAppDispatch()
 
     const deleteCurrentInvoice = () => {
-        dispatch(deleteInvoice(params.id))
-        history.push('/')
+        dispatch(deleteInvoiceId(params.id))
+        dispatch(openDeleteInvoiceModal(true))
     }
     return (
         <>

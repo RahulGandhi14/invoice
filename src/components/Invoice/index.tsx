@@ -7,6 +7,7 @@ import { useAppSelector } from '../../redux/hooks'
 import { EInvoiceStatus, InitialValuesType } from '../../data/Form'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import DeletePopup from './DeletePopup'
 
 const Wrapper = styled(PageWrapper)`
     padding: 0 3rem;
@@ -34,13 +35,18 @@ const Invoice = () => {
     }, [editCurrentInvoice])
 
     return (
-        <Wrapper>
-            <BackBtn />
-            <InvoiceHeader
-                invoiceStatus={currentInvoice?.status || EInvoiceStatus.DRAFT}
-            />
-            <InvoiceBody invoice={currentInvoice} />
-        </Wrapper>
+        <>
+            <DeletePopup />
+            <Wrapper>
+                <BackBtn />
+                <InvoiceHeader
+                    invoiceStatus={
+                        currentInvoice?.status || EInvoiceStatus.DRAFT
+                    }
+                />
+                <InvoiceBody invoice={currentInvoice} />
+            </Wrapper>
+        </>
     )
 }
 

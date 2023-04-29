@@ -13,9 +13,13 @@ const Wrapper = styled(FlexContainer)`
 
 type ActionButtonProps = {
     setOpen: (open: boolean) => void
+    editInvoice: boolean
 }
 
-const ActionButtons: React.FC<ActionButtonProps> = ({ setOpen }) => {
+const ActionButtons: React.FC<ActionButtonProps> = ({
+    setOpen,
+    editInvoice,
+}) => {
     const close = () => setOpen(false)
 
     return (
@@ -24,10 +28,14 @@ const ActionButtons: React.FC<ActionButtonProps> = ({ setOpen }) => {
                 Discard
             </Button>
             <FlexContainer style={{ gap: '0.5rem' }}>
-                <Button type="button" variant="tertiary">
-                    Save as draft
+                {editInvoice ? null : (
+                    <Button type="button" variant="tertiary">
+                        Save as draft
+                    </Button>
+                )}
+                <Button type="submit">
+                    {editInvoice ? 'Save Changes' : 'Save & Send'}
                 </Button>
-                <Button type="submit">Save & Send</Button>
             </FlexContainer>
         </Wrapper>
     )

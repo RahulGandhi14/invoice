@@ -51,7 +51,7 @@ const InvoiceForm: React.FC<InvoiceFormPropType> = ({ open, setOpen }) => {
                     validationSchema={validationSchema}
                     onSubmit={onSubmit}
                 >
-                    <Form setOpen={setOpen} />
+                    <Form setOpen={setOpen} editInvoice={editCurrentInvoice} />
                 </Formik>
             ) : null}
         </AnimatePresence>

@@ -51,9 +51,10 @@ const variants: Variants = {
 
 type FormPropType = {
     setOpen: (state: boolean) => void
+    editInvoice: boolean
 }
 
-const Form: React.FC<FormPropType> = ({ setOpen }) => {
+const Form: React.FC<FormPropType> = ({ setOpen, editInvoice }) => {
     return (
         <>
             <Backdrop setOpen={setOpen} />
@@ -65,9 +66,14 @@ const Form: React.FC<FormPropType> = ({ setOpen }) => {
                 exit="hidden"
             >
                 <StyledForm>
-                    <Heading2>Create Invoice</Heading2>
+                    <Heading2>
+                        {editInvoice ? 'Edit' : 'Create'} Invoice
+                    </Heading2>
                     <FormFields />
-                    <ActionButtons setOpen={setOpen} />
+                    <ActionButtons
+                        setOpen={setOpen}
+                        editInvoice={editInvoice}
+                    />
                 </StyledForm>
             </Wrapper>
         </>
