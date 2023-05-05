@@ -42,9 +42,9 @@ const DeletePopup = () => {
     const history = useHistory()
     const dispatch = useAppDispatch()
 
-    const { openDeleteInvoiceModal: open, deleteInvoiceId } = useAppSelector(
-        (state) => state
-    )
+    const {
+        invoice: { openDeleteInvoiceModal: open, deleteInvoiceId },
+    } = useAppSelector((state) => state)
 
     const setOpen = (open: boolean) => dispatch(openDeleteInvoiceModal(open))
 

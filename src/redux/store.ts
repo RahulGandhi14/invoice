@@ -1,18 +1,24 @@
-import { configureStore } from '@reduxjs/toolkit'
-import invoiceReducer from './invoice/reducers'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage'
 import { persistReducer, persistStore } from 'redux-persist'
 import thunk from 'redux-thunk'
+import invoiceReducer from './invoice/reducers'
+import themeReducer from './theme/reducers'
 
 const persistConfig = {
     key: 'root',
     storage,
 }
 
-const persistedInvoiceReducer = persistReducer(persistConfig, invoiceReducer)
+const combinedReducer = combineReducers({
+    invoice: invoiceReducer,
+    theme: themeReducer,
+})
+
+const rootReducer = persistReducer(persistConfig, combinedReducer)
 
 const store = configureStore({
-    reducer: persistedInvoiceReducer,
+    reducer: rootReducer,
     devTools: process.env.NODE_ENV !== 'production',
 
     // without using the Thunk middleware,

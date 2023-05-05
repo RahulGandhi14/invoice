@@ -21,9 +21,9 @@ const Wrapper = styled(PageWrapper)`
 const Invoice = () => {
     const params = useParams<{ id: string }>()
 
-    const invoices = useAppSelector((state) => state.invoices)
+    const invoices = useAppSelector((state) => state.invoice.invoices)
     const editCurrentInvoice = useAppSelector(
-        (state) => state.editCurrentInvoice
+        (state) => state.invoice.editCurrentInvoice
     )
 
     const [currentInvoice, setCurrentInvoice] = useState<

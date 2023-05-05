@@ -10,7 +10,7 @@ const Wrapper = styled('div')`
 `
 
 const InvoiceList = () => {
-    const invoices = useAppSelector((state) => state.invoices)
+    const invoices = useAppSelector((state) => state.invoice.invoices)
 
     return (
         <Wrapper>

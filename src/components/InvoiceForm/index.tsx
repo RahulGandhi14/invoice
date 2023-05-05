@@ -17,9 +17,11 @@ type InvoiceFormPropType = {
 
 const InvoiceForm: React.FC<InvoiceFormPropType> = ({ open, setOpen }) => {
     const dispatch = useAppDispatch()
-    const currentInvoice = useAppSelector((state) => state.currentInvoice)
+    const currentInvoice = useAppSelector(
+        (state) => state.invoice.currentInvoice
+    )
     const editCurrentInvoice = useAppSelector(
-        (state) => state.editCurrentInvoice
+        (state) => state.invoice.editCurrentInvoice
     )
 
     const [initalInvoiceValues, setInitialInvoiceValues] =
