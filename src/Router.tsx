@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion'
 import React, { Suspense } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
@@ -8,10 +9,12 @@ const Router = () => {
     return (
         <BrowserRouter>
             <Suspense fallback={() => <p>Loading...</p>}>
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/invoice/:id" exact component={Invoice} />
-                </Switch>
+                <AnimatePresence exitBeforeEnter>
+                    <Switch>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/invoice/:id" exact component={Invoice} />
+                    </Switch>
+                </AnimatePresence>
             </Suspense>
         </BrowserRouter>
     )

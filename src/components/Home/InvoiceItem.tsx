@@ -9,8 +9,13 @@ import moment from 'moment'
 import { themeType } from '../styled/Theme'
 import { useAppDispatch } from '../../redux/hooks'
 import { getInvoiceById } from '../../redux/invoice/actions'
+import { Link } from 'react-router-dom'
 
-const Container = styled(motion.a)`
+const LinkContainer = styled(Link)`
+    text-decoration: none;
+`
+
+const Container = styled(motion.div)`
     display: grid;
     grid-template-columns: 4rem 8rem 1fr min-content min-content min-content;
     column-gap: 1.5rem;
@@ -20,7 +25,6 @@ const Container = styled(motion.a)`
     border: 1px solid transparent;
     border-radius: 8px;
     transition: border 0.3s, background 0.3s;
-    text-decoration: none;
 
     :hover {
         border-color: #7c5dfa;
@@ -96,27 +100,28 @@ const InvoiceItem = ({ invoice }: InvoiceItemProps) => {
     const dispatch = useAppDispatch()
 
     return (
-        <Container
-            href={`/invoice/${invoice.id}`}
-            onClick={() => dispatch(getInvoiceById(`${invoice.id}`))}
-        >
-            <Heading>
-                <span>#</span>
-                {invoice.id}
-            </Heading>
-            <DueDate>
-                {`Due ${moment(invoice.paymentDue).format('DD MMM YYYY')}`}
-            </DueDate>
-            <ClientName>{invoice.clientName}</ClientName>
-            <Total>
-                <span>₹</span>
-                {invoice?.total || 0}
-            </Total>
-            <InvoiceStatusWrapper>
-                <InvoiceStatus status={invoice.status} />
-            </InvoiceStatusWrapper>
-            <Arrow alt="Right arrow" src={ArrowImage} />
-        </Container>
+        <LinkContainer to={`/invoice/${invoice.id}`}>
+            <Container
+                onClick={() => dispatch(getInvoiceById(`${invoice.id}`))}
+            >
+                <Heading>
+                    <span>#</span>
+                    {invoice.id}
+                </Heading>
+                <DueDate>
+                    {`Due ${moment(invoice.paymentDue).format('DD MMM YYYY')}`}
+                </DueDate>
+                <ClientName>{invoice.clientName}</ClientName>
+                <Total>
+                    <span>₹</span>
+                    {invoice?.total || 0}
+                </Total>
+                <InvoiceStatusWrapper>
+                    <InvoiceStatus status={invoice.status} />
+                </InvoiceStatusWrapper>
+                <Arrow alt="Right arrow" src={ArrowImage} />
+            </Container>
+        </LinkContainer>
     )
 }
 
