@@ -1,9 +1,9 @@
 import { AnimatePresence } from 'framer-motion'
-import React, { Suspense } from 'react'
+import { Suspense } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-const Home = React.lazy(() => import('./pages/Home'))
-const Invoice = React.lazy(() => import('./pages/Invoice'))
+import HomePage from './pages/Home'
+import InvoicePage from './pages/Invoice'
 
 const Router = () => {
     return (
@@ -11,8 +11,12 @@ const Router = () => {
             <Suspense fallback={() => <p>Loading...</p>}>
                 <AnimatePresence exitBeforeEnter>
                     <Switch>
-                        <Route path="/" exact component={Home} />
-                        <Route path="/invoice/:id" exact component={Invoice} />
+                        <Route path="/" exact component={HomePage} />
+                        <Route
+                            path="/invoice/:id"
+                            exact
+                            component={InvoicePage}
+                        />
                     </Switch>
                 </AnimatePresence>
             </Suspense>
