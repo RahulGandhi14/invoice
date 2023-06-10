@@ -11,36 +11,33 @@ const Wrapper = styled(motion.div)`
 `
 
 const animation: Variants = {
-    hidden: {},
-    visible: {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
         transition: {
-            staggerChildren: 0.15,
+            staggerChildren: 0.125,
+            delayChildren: 0.3,
         },
     },
-    exit: {
-        x: '-50%',
-        opacity: 0,
-        transition: { type: 'tween', ease: 'easeIn', duration: 0.5 },
-    },
+}
+
+const itemAnimation: Variants = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
 }
 
 const InvoiceList = () => {
     const invoices = useAppSelector((state) => state.invoice.invoices)
 
-    return (
-        <Wrapper
-            variants={animation}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-        >
-            {invoices?.length
-                ? invoices.map((invoice: any) => (
-                      <InvoiceItem invoice={invoice} />
-                  ))
-                : null}
+    return invoices?.length ? (
+        <Wrapper variants={animation} initial="hidden" animate="show">
+            {invoices.map((invoice) => (
+                <motion.div variants={itemAnimation}>
+                    <InvoiceItem key={invoice.id} invoice={invoice} />
+                </motion.div>
+            ))}
         </Wrapper>
-    )
+    ) : null
 }
 
 export default InvoiceList

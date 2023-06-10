@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { H3, H4 } from '../styled/Headings'
 import InvoiceStatus from '../styled/InvoiceStatus'
@@ -13,9 +12,6 @@ import { Link } from 'react-router-dom'
 
 const LinkContainer = styled(Link)`
     text-decoration: none;
-`
-
-const Container = styled(motion.div)`
     display: grid;
     grid-template-columns: 4rem 8rem 1fr min-content min-content min-content;
     column-gap: 1.5rem;
@@ -100,27 +96,26 @@ const InvoiceItem = ({ invoice }: InvoiceItemProps) => {
     const dispatch = useAppDispatch()
 
     return (
-        <LinkContainer to={`/invoice/${invoice.id}`}>
-            <Container
-                onClick={() => dispatch(getInvoiceById(`${invoice.id}`))}
-            >
-                <Heading>
-                    <span>#</span>
-                    {invoice.id}
-                </Heading>
-                <DueDate>
-                    {`Due ${moment(invoice.paymentDue).format('DD MMM YYYY')}`}
-                </DueDate>
-                <ClientName>{invoice.clientName}</ClientName>
-                <Total>
-                    <span>₹</span>
-                    {invoice?.total || 0}
-                </Total>
-                <InvoiceStatusWrapper>
-                    <InvoiceStatus status={invoice.status} />
-                </InvoiceStatusWrapper>
-                <Arrow alt="Right arrow" src={ArrowImage} />
-            </Container>
+        <LinkContainer
+            to={`/invoice/${invoice.id}`}
+            onClick={() => dispatch(getInvoiceById(`${invoice.id}`))}
+        >
+            <Heading>
+                <span>#</span>
+                {invoice.id}
+            </Heading>
+            <DueDate>
+                {`Due ${moment(invoice.paymentDue).format('DD MMM YYYY')}`}
+            </DueDate>
+            <ClientName>{invoice.clientName}</ClientName>
+            <Total>
+                <span>₹</span>
+                {invoice?.total || 0}
+            </Total>
+            <InvoiceStatusWrapper>
+                <InvoiceStatus status={invoice.status} />
+            </InvoiceStatusWrapper>
+            <Arrow alt="Right arrow" src={ArrowImage} />
         </LinkContainer>
     )
 }
