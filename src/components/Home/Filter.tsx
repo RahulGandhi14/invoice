@@ -4,6 +4,13 @@ import { themeType } from '../styled/Theme'
 import downArrow from '../../assets/icon-arrow-down.svg'
 import { useState } from 'react'
 import CheckBox from '../styled/CheckBox'
+import { AnimatePresence, motion, Variants } from 'framer-motion'
+
+const variants: Variants = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: 0.3, ease: 'easeIn' } },
+    exit: { opacity: 0, transition: { duration: 0.3, ease: 'easeOut' } },
+}
 
 const Wrapper = styled.div`
     position: relative;
@@ -39,7 +46,7 @@ const P = styled.div`
     }
 `
 
-const DropDown = styled.div`
+const DropDown = styled(motion.div)`
     position: absolute;
     top: 2.5rem;
     left: 50%;
@@ -72,13 +79,20 @@ const Filter = () => {
                     />
                 </span>
             </P>
-            {openDropDown && (
-                <DropDown>
-                    {dropdownList.map((listItem) => (
-                        <CheckBox key={listItem} label={listItem} />
-                    ))}
-                </DropDown>
-            )}
+            <AnimatePresence>
+                {openDropDown && (
+                    <DropDown
+                        variants={variants}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                    >
+                        {dropdownList.map((listItem) => (
+                            <CheckBox key={listItem} label={listItem} />
+                        ))}
+                    </DropDown>
+                )}
+            </AnimatePresence>
         </Wrapper>
     )
 }
