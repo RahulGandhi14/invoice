@@ -8,6 +8,7 @@ import { EInvoiceStatus, InitialValuesType } from '../../data/Form'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import DeletePopup from './DeletePopup'
+import { Variants } from 'framer-motion'
 
 const Wrapper = styled(PageWrapper)`
     padding: 0 3rem;
@@ -17,6 +18,20 @@ const Wrapper = styled(PageWrapper)`
         padding: 0;
     }
 `
+
+const variants: Variants = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: 0.5, ease: 'easeIn' } },
+    exit: {
+        x: '50%',
+        opacity: 0,
+        transition: {
+            type: 'tween',
+            ease: 'easeIn',
+            duration: 0.5,
+        },
+    },
+}
 
 const Invoice = () => {
     const params = useParams<{ id: string }>()
@@ -37,7 +52,12 @@ const Invoice = () => {
     return (
         <>
             <DeletePopup />
-            <Wrapper>
+            <Wrapper
+                variants={variants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+            >
                 <BackBtn />
                 <InvoiceHeader
                     invoiceStatus={

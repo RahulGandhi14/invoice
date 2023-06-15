@@ -1,3 +1,4 @@
+import { motion, Variants } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
 import { useAppSelector } from '../../redux/hooks'
@@ -18,7 +19,7 @@ const SubHeading = styled.p`
     ${fontStyle1}
 `
 
-const FlexContainer = styled.div`
+const FlexContainer = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -33,11 +34,24 @@ type HeaderPropType = {
     setOpen: (state: boolean) => void
 }
 
+const variants: Variants = {
+    initial: { opacity: 0 },
+    animate: {
+        opacity: 1,
+        transition: { duration: 0.5, ease: 'easeIn' },
+    },
+}
+
 const Header: React.FC<HeaderPropType> = ({ setOpen }) => {
     const invoices = useAppSelector((state) => state.invoice.invoices)
 
     return (
-        <FlexContainer style={{ marginBottom: '3rem' }}>
+        <FlexContainer
+            variants={variants}
+            initial="initial"
+            animate="animate"
+            style={{ marginBottom: '3rem' }}
+        >
             <div>
                 <Heading>Invoices</Heading>
                 <SubHeading>

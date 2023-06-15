@@ -1,7 +1,8 @@
+import { motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 import { themeType } from './Theme'
 
-export const PageWrapper = styled('div')`
+export const PageWrapper = styled(motion.div)`
     width: 100%;
     max-width: 45.625rem;
     height: 100vh;
