@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useAppSelector } from '../../redux/hooks'
 import { H1 } from '../styled/Headings'
 import { fontStyle1 } from '../styled/Typography'
 import Filter from './Filter'
@@ -33,11 +34,16 @@ type HeaderPropType = {
 }
 
 const Header: React.FC<HeaderPropType> = ({ setOpen }) => {
+    const invoices = useAppSelector((state) => state.invoice.invoices)
+
     return (
         <FlexContainer style={{ marginBottom: '3rem' }}>
             <div>
                 <Heading>Invoices</Heading>
-                <SubHeading>There are total 5 invoices.</SubHeading>
+                <SubHeading>
+                    There are total {invoices?.length ? invoices.length : 0}{' '}
+                    invoices.
+                </SubHeading>
             </div>
             <FlexContainer>
                 <Filter />
