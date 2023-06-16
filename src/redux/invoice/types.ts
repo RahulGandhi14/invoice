@@ -1,16 +1,16 @@
 import { EInvoiceStatus, InitialValuesType } from '../../data/Form'
 
 export interface IInvoiceState {
-    allInvoices: InitialValuesType[]
     invoices: InitialValuesType[]
     currentInvoice: InitialValuesType | null
     openForm: boolean
     editCurrentInvoice: boolean
     openDeleteInvoiceModal: boolean
     deleteInvoiceId: string
+    filters: EInvoiceStatus[]
 }
 
-export type FilterStatusType = { [key in EInvoiceStatus]: boolean }
+export type FilterStatusType = EInvoiceStatus[]
 
 export const CREATE_INVOICE = 'CREATE_INVOICE'
 export const GET_INVOICE_BY_ID = 'GET_INVOICE_BY_ID'

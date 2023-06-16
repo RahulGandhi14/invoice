@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import InvoiceItem from './InvoiceItem'
-import { useAppSelector } from '../../redux/hooks'
 import { motion, Variants } from 'framer-motion'
+import { InitialValuesType } from '../../data/Form'
 
 const Wrapper = styled(motion.div)`
     display: flex;
@@ -26,9 +26,11 @@ const itemAnimation: Variants = {
     show: { opacity: 1 },
 }
 
-const InvoiceList = () => {
-    const invoices = useAppSelector((state) => state.invoice.invoices)
+type InvoiceListProps = {
+    invoices: InitialValuesType[]
+}
 
+const InvoiceList: React.FC<InvoiceListProps> = ({ invoices }) => {
     return invoices?.length ? (
         <Wrapper variants={animation} initial="hidden" animate="show">
             {invoices.map((invoice) => (

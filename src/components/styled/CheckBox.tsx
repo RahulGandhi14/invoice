@@ -59,17 +59,19 @@ const Label = styled.span`
     ${fontStyle1}
     font-weight: 700;
     color: ${({ theme }: themeType) => theme.color.text.heading};
+    text-transform: capitalize;
 `
 
 interface propType {
     label: string
     checked?: boolean
+    onClick: (item: any) => void
 }
 
-const CheckBox = ({ label, checked }: propType) => {
+const CheckBox = ({ label, checked, onClick }: propType) => {
     return (
         <Container>
-            <InputCheckbox checked={checked} />
+            <InputCheckbox checked={checked} onChange={onClick} />
             <CheckMark className="checkmark">
                 <img src={checkIcon} alt="Check Icon" />
             </CheckMark>

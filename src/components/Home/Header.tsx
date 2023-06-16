@@ -32,6 +32,7 @@ const FlexContainer = styled(motion.div)`
 
 type HeaderPropType = {
     setOpen: (state: boolean) => void
+    numOfInvoices: number
 }
 
 const variants: Variants = {
@@ -42,9 +43,7 @@ const variants: Variants = {
     },
 }
 
-const Header: React.FC<HeaderPropType> = ({ setOpen }) => {
-    const invoices = useAppSelector((state) => state.invoice.invoices)
-
+const Header: React.FC<HeaderPropType> = ({ setOpen, numOfInvoices }) => {
     return (
         <FlexContainer
             variants={variants}
@@ -55,8 +54,7 @@ const Header: React.FC<HeaderPropType> = ({ setOpen }) => {
             <div>
                 <Heading>Invoices</Heading>
                 <SubHeading>
-                    There are total {invoices?.length ? invoices.length : 0}{' '}
-                    invoices.
+                    There are total {numOfInvoices || 0} invoices.
                 </SubHeading>
             </div>
             <FlexContainer>

@@ -5,6 +5,9 @@ import downArrow from '../../assets/icon-arrow-down.svg'
 import { useState } from 'react'
 import CheckBox from '../styled/CheckBox'
 import { AnimatePresence, motion, Variants } from 'framer-motion'
+import { EInvoiceStatus } from '../../data/Form'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { filterInvoice } from '../../redux/invoice/actions'
 
 const variants: Variants = {
     initial: { opacity: 0 },
@@ -63,10 +66,23 @@ const DropDown = styled(motion.div)`
     transition: background-color 0.3s, box-shadow 0.3s;
 `
 
-const dropdownList = ['Paid', 'Pending', 'Draft']
+const dropdownList = Object.values(EInvoiceStatus)
 
 const Filter = () => {
+    const dispatch = useAppDispatch()
+    const filters = useAppSelector((state) => state.invoice.filters)
+
     const [openDropDown, setOpenDropDown] = useState(false)
+
+    const onCheck = (item: EInvoiceStatus) => {
+        let newFilters: EInvoiceStatus[] = []
+        if (filters.includes(item)) {
+            newFilters = filters.filter((filter) => filter !== item)
+        } else {
+            newFilters = [...filters, item]
+        }
+        dispatch(filterInvoice(newFilters))
+    }
 
     return (
         <Wrapper>
@@ -88,7 +104,12 @@ const Filter = () => {
                         exit="exit"
                     >
                         {dropdownList.map((listItem) => (
-                            <CheckBox key={listItem} label={listItem} />
+                            <CheckBox
+                                key={listItem}
+                                label={listItem}
+                                checked={filters.includes(listItem)}
+                                onClick={() => onCheck(listItem)}
+                            />
                         ))}
                     </DropDown>
                 )}

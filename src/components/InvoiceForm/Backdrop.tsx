@@ -1,4 +1,4 @@
-import ScrollLock from 'react-scrolllock'
+import ScrollLock, { TouchScrollable } from 'react-scrolllock'
 import styled from 'styled-components'
 import { motion, Variants } from 'framer-motion'
 
@@ -23,7 +23,7 @@ const animation: Variants = {
 }
 
 type BackdropType = {
-    children?: React.ReactNode
+    children?: JSX.Element
     setOpen: (state: boolean) => void
     zIndex?: number
 }
@@ -32,18 +32,21 @@ const Backdrop: React.FC<BackdropType> = ({ children, setOpen, zIndex }) => {
     const close = () => setOpen(false)
 
     return (
-        <ScrollLock>
-            <StyledBackdrop
-                variants={animation}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                onClick={close}
-                zIndex={zIndex}
-            >
-                {children}
-            </StyledBackdrop>
-        </ScrollLock>
+        <>
+            <ScrollLock />
+            <TouchScrollable>
+                <StyledBackdrop
+                    variants={animation}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    onClick={close}
+                    zIndex={zIndex}
+                >
+                    {children}
+                </StyledBackdrop>
+            </TouchScrollable>
+        </>
     )
 }
 

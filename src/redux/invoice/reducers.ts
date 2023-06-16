@@ -4,6 +4,7 @@ import {
     deleteInvoice,
     deleteInvoiceId,
     editInvoice,
+    filterInvoice,
     getInvoiceById,
     openDeleteInvoiceModal,
     openForm,
@@ -14,13 +15,13 @@ import { InitialValuesType } from '../../data/Form'
 import { getNextId } from '../../utils/id'
 
 const initialState: IInvoiceState = {
-    allInvoices: invoices as unknown as InitialValuesType[],
     invoices: invoices as unknown as InitialValuesType[],
     currentInvoice: null,
     openForm: false,
     editCurrentInvoice: false,
     openDeleteInvoiceModal: false,
     deleteInvoiceId: '',
+    filters: [],
 }
 
 export default createReducer(initialState, (builder) => {
@@ -30,16 +31,14 @@ export default createReducer(initialState, (builder) => {
                 (total, current) => total + current.total,
                 0
             )
-            const prevId = state.allInvoices?.length
-                ? state.allInvoices[0].id
-                : ''
-            state.allInvoices = [
+            const prevId = state.invoices?.length ? state.invoices[0].id : ''
+            state.invoices = [
                 { ...action.payload, total, id: getNextId(prevId || 'AA00') },
-                ...state.allInvoices,
+                ...state.invoices,
             ]
         })
         .addCase(editInvoice, (state, action) => {
-            state.allInvoices = state.allInvoices.map((invoice) => {
+            state.invoices = state.invoices.map((invoice) => {
                 if (invoice.id === state.currentInvoice?.id) {
                     const total = action.payload.items.reduce(
                         (total, current) => total + current.total,
@@ -51,7 +50,7 @@ export default createReducer(initialState, (builder) => {
             })
         })
         .addCase(getInvoiceById, (state, action) => {
-            let currentInvoice = state.allInvoices.find(
+            let currentInvoice = state.invoices.find(
                 (invoice) => invoice.id === action.payload
             ) as unknown as InitialValuesType
             if (!currentInvoice) {
@@ -75,5 +74,8 @@ export default createReducer(initialState, (builder) => {
         })
         .addCase(deleteInvoiceId, (state, action) => {
             state.deleteInvoiceId = action.payload
+        })
+        .addCase(filterInvoice, (state, action) => {
+            state.filters = action.payload || []
         })
 })
