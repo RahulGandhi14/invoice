@@ -66,6 +66,10 @@ const Button = styled.button<BtnProps>`
                 background: ${theme.color.btn.danger.hover};
             }
         `}
+
+    @media only screen and (max-width: 540px) {
+        padding: 0.8rem 1rem;
+    }
 `
 
 export default Button
