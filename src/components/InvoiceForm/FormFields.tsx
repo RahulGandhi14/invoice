@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Input from '../styled/Input'
+import { OptionType } from '../styled/Input/Select'
 import { Legend } from '../styled/Input/styles'
 import ItemList from './ItemList'
 
@@ -12,6 +13,10 @@ const Wrapper = styled.div`
     padding-bottom: 1rem;
     overflow: scroll;
     overflow-x: hidden;
+
+    @media only screen and (max-width: 540px) {
+        padding-right: 0;
+    }
 `
 
 const FieldSet = styled.fieldset`
@@ -60,6 +65,13 @@ const OtherInvoiceFields = styled.div`
     }
 `
 
+const paymentTerms: OptionType[] = [
+    { label: 'Net 1 day', value: '1' },
+    { label: 'Net 7 days', value: '7' },
+    { label: 'Net 14 days', value: '14' },
+    { label: 'Net 30 days', value: '30' },
+]
+
 const FormFields: React.FC = () => {
     return (
         <Wrapper>
@@ -107,6 +119,7 @@ const FormFields: React.FC = () => {
                         inputType="select"
                         label="Payment Terms"
                         name="paymentTerms"
+                        options={paymentTerms}
                     />
                     <Input
                         label="Description"

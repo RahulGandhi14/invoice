@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useField } from 'formik'
 import DateElement from './Date'
 import { FieldType, FieldStyles, Label } from './styles'
-import Select from './Select'
+import Select, { OptionType } from './Select'
 
 const Wrapper = styled.div`
     display: flex;
@@ -21,11 +21,13 @@ interface InputType extends React.InputHTMLAttributes<any> {
     hideLabel?: boolean
     noBorders?: boolean
     inputType?: 'date' | 'select'
+    options?: OptionType[]
 }
 
 const Input: React.FC<InputType> = ({
     label,
     name,
+    options,
     inputType,
     hideLabel,
     noBorders,
@@ -41,7 +43,7 @@ const Input: React.FC<InputType> = ({
                 return (
                     <Select
                         label={label}
-                        options={[{ label: '1', value: 1 }]}
+                        options={options || []}
                         field={field}
                         valid={valid}
                     />

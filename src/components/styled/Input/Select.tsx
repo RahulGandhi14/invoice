@@ -15,7 +15,7 @@ const SelectField = styled.select<FieldType>`
     }
 `
 
-type OptionType = { label: string; value: string | number }
+export type OptionType = { label: string; value: string | number }
 
 type SelectType = {
     label: string
