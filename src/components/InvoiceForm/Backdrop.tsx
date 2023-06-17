@@ -1,4 +1,3 @@
-import ScrollLock, { TouchScrollable } from 'react-scrolllock'
 import styled from 'styled-components'
 import { motion, Variants } from 'framer-motion'
 
