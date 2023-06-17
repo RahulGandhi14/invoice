@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { motion, Variants } from 'framer-motion'
+import { motion, MotionStyle, Variants } from 'framer-motion'
 
 type StyledBackdropProps = { zIndex?: number }
 
@@ -25,9 +25,15 @@ type BackdropType = {
     children?: JSX.Element
     setOpen: (state: boolean) => void
     zIndex?: number
+    style?: MotionStyle
 }
 
-const Backdrop: React.FC<BackdropType> = ({ children, setOpen, zIndex }) => {
+const Backdrop: React.FC<BackdropType> = ({
+    children,
+    setOpen,
+    zIndex,
+    style,
+}) => {
     const close = () => setOpen(false)
 
     return (
@@ -38,6 +44,7 @@ const Backdrop: React.FC<BackdropType> = ({ children, setOpen, zIndex }) => {
             exit="hidden"
             onClick={close}
             zIndex={zIndex}
+            style={style}
         >
             {children}
         </StyledBackdrop>

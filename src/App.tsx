@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
+import { AboutMe } from './components/AboutMe/AboutMe'
 import InvoiceForm from './components/InvoiceForm'
 import Sidebar from './components/Sidebar/Sidebar'
 import GlobalStyles from './components/styled/GlobalStyles'
@@ -41,6 +42,8 @@ const App: React.FC<propType> = ({ children }) => {
     const open = useAppSelector((state) => state.invoice.openForm)
     const theme = useAppSelector((state) => state.theme)
 
+    const [openAboutMe, setOpenAboutMe] = useState(false)
+
     useEffect(() => {
         if (!open) {
             // resetting current invoice
@@ -58,16 +61,22 @@ const App: React.FC<propType> = ({ children }) => {
 
     const setOpen = (state: boolean) => dispatch(openForm(state))
 
+    const toggleOpenAboutMe = () => setOpenAboutMe((prevState) => !prevState)
+
     return (
         <ThemeProvider theme={theme.isDarkTheme ? dark : light}>
             <GlobalStyles />
             <Wrapper>
-                <Sidebar toggleTheme={toggleThemeHandler} />
+                <Sidebar
+                    toggleTheme={toggleThemeHandler}
+                    setOpenAboutMe={toggleOpenAboutMe}
+                />
                 <Main>
                     <InvoiceForm open={open} setOpen={setOpen} />
                     {children}
                 </Main>
             </Wrapper>
+            <AboutMe open={openAboutMe} setOpen={toggleOpenAboutMe} />
         </ThemeProvider>
     )
 }

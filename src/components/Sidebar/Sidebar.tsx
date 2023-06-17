@@ -110,9 +110,10 @@ const Divider = styled.div`
 
 interface propType {
     toggleTheme: () => void
+    setOpenAboutMe: () => void
 }
 
-const Sidebar: React.FC<propType> = ({ toggleTheme }) => {
+const Sidebar: React.FC<propType> = ({ toggleTheme, setOpenAboutMe }) => {
     return (
         <Aside>
             <Logo>
@@ -121,7 +122,12 @@ const Sidebar: React.FC<propType> = ({ toggleTheme }) => {
             <FlexContainer>
                 <ThemeToggler toggleTheme={toggleTheme} />
                 <Divider />
-                <img src={avatar} alt="avatar" className="avatar" />
+                <img
+                    src={avatar}
+                    alt="avatar"
+                    className="avatar"
+                    onClick={setOpenAboutMe}
+                />
             </FlexContainer>
         </Aside>
     )
