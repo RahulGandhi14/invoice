@@ -32,21 +32,16 @@ const Backdrop: React.FC<BackdropType> = ({ children, setOpen, zIndex }) => {
     const close = () => setOpen(false)
 
     return (
-        <>
-            <ScrollLock />
-            <TouchScrollable>
-                <StyledBackdrop
-                    variants={animation}
-                    initial="hidden"
-                    animate="visible"
-                    exit="hidden"
-                    onClick={close}
-                    zIndex={zIndex}
-                >
-                    {children}
-                </StyledBackdrop>
-            </TouchScrollable>
-        </>
+        <StyledBackdrop
+            variants={animation}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            onClick={close}
+            zIndex={zIndex}
+        >
+            {children}
+        </StyledBackdrop>
     )
 }
 
