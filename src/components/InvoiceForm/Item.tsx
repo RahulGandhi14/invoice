@@ -26,18 +26,15 @@ type ItemType = {
 const Item: React.FC<ItemType> = ({ idx, helpers }) => {
     const { values, setFieldValue } = useFormikContext<InitialValuesType>()
 
+    const price = values.items[idx].price
+    const quantity = values.items[idx].quantity
+
     useEffect(() => {
         setFieldValue(
             `items[${idx}].total`,
             values.items[idx].quantity * values.items[idx].price
         )
-    }, [
-        idx,
-        values,
-        setFieldValue,
-        values.items[idx].price,
-        values.items[idx].quantity,
-    ])
+    }, [idx, price, values, quantity, setFieldValue])
 
     const hideLabel = idx > 0
 

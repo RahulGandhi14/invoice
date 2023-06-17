@@ -46,10 +46,14 @@ const App: React.FC<propType> = ({ children }) => {
             // resetting current invoice
             dispatch(getInvoiceById('-1'))
         }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open])
 
     const toggleThemeHandler = useCallback(() => {
         dispatch(toggleTheme(!theme.isDarkTheme))
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [theme.isDarkTheme])
 
     const setOpen = (state: boolean) => dispatch(openForm(state))

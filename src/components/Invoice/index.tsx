@@ -47,6 +47,7 @@ const Invoice = () => {
 
     useEffect(() => {
         setCurrentInvoice(invoices.find((invoice) => invoice.id === params?.id))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [editCurrentInvoice])
 
     return (

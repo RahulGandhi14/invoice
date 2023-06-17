@@ -1,7 +1,6 @@
 import { motion, Variants } from 'framer-motion'
 import React from 'react'
 import styled from 'styled-components'
-import { useAppSelector } from '../../redux/hooks'
 import { H1 } from '../styled/Headings'
 import { fontStyle1 } from '../styled/Typography'
 import Filter from './Filter'

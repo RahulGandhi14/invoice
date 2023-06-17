@@ -46,11 +46,6 @@ interface OpenDeleteInvoiceModal {
     payload: boolean
 }
 
-interface DeleteInvoiceId {
-    type: typeof DELETE_INVOICE_ID
-    payload: string
-}
-
 interface DeleteInvoice {
     type: typeof DELETE_INVOICE
     payload: string
