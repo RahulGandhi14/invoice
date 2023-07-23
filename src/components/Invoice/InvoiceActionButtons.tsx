@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../redux/hooks'
 import {
     deleteInvoiceId,
     getInvoiceById,
+    markInvoiceAsPaid,
     openDeleteInvoiceModal,
     openForm,
 } from '../../redux/invoice/actions'
@@ -21,6 +22,9 @@ const InvoiceActionButtons = ({ status }: InvoiceActionButtonsProps) => {
         dispatch(deleteInvoiceId(params.id))
         dispatch(openDeleteInvoiceModal(true))
     }
+
+    const markAsPaid = () => dispatch(markInvoiceAsPaid(params.id))
+
     return (
         <>
             <Button
@@ -41,7 +45,7 @@ const InvoiceActionButtons = ({ status }: InvoiceActionButtonsProps) => {
                 Delete
             </Button>
             {status !== EInvoiceStatus.PAID ? (
-                <Button type="button" variant="primary">
+                <Button type="button" variant="primary" onClick={markAsPaid}>
                     Mark As Paid
                 </Button>
             ) : null}

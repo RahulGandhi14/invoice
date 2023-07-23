@@ -20,6 +20,7 @@ export const OPEN_DELETE_INVOICE_MODAL = 'OPEN_DELETE_INVOICE_MODAL'
 export const DELETE_INVOICE_ID = 'DELETE_INVOICE_ID'
 export const DELETE_INVOICE = 'DELETE_INVOICE'
 export const FILTER_INVOICES = 'FILTER_INVOICES'
+export const MARK_INVOICE_AS_PAID = 'MARK_INVOICE_AS_PAID'
 
 interface CreateInvoiceAction {
     type: typeof CREATE_INVOICE
@@ -56,6 +57,11 @@ interface FilterInvoice {
     payload: FilterStatusType
 }
 
+interface MarkInvoiceAsPaid {
+    type: typeof MARK_INVOICE_AS_PAID
+    payload: string
+}
+
 export type InvoiceActionsType =
     | CreateInvoiceAction
     | GetInvoiceById
@@ -64,3 +70,4 @@ export type InvoiceActionsType =
     | OpenDeleteInvoiceModal
     | DeleteInvoice
     | FilterInvoice
+    | MarkInvoiceAsPaid

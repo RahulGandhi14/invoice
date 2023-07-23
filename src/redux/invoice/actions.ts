@@ -10,6 +10,7 @@ import {
     OPEN_FORM,
     OPEN_DELETE_INVOICE_MODAL,
     DELETE_INVOICE_ID,
+    MARK_INVOICE_AS_PAID,
 } from './types'
 
 export const createInvoice = createAction<InitialValuesType>(CREATE_INVOICE)
@@ -29,3 +30,5 @@ export const deleteInvoiceId = createAction<string>(DELETE_INVOICE_ID)
 export const deleteInvoice = createAction<string>(DELETE_INVOICE)
 
 export const filterInvoice = createAction<FilterStatusType>(FILTER_INVOICES)
+
+export const markInvoiceAsPaid = createAction<string>(MARK_INVOICE_AS_PAID)

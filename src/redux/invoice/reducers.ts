@@ -6,12 +6,13 @@ import {
     editInvoice,
     filterInvoice,
     getInvoiceById,
+    markInvoiceAsPaid,
     openDeleteInvoiceModal,
     openForm,
 } from './actions'
 import { IInvoiceState } from './types'
 import invoices from '../../data/data.json'
-import { InitialValuesType } from '../../data/Form'
+import { EInvoiceStatus, InitialValuesType } from '../../data/Form'
 import { getNextId } from '../../utils/id'
 
 const initialState: IInvoiceState = {
@@ -77,5 +78,11 @@ export default createReducer(initialState, (builder) => {
         })
         .addCase(filterInvoice, (state, action) => {
             state.filters = action.payload || []
+        })
+        .addCase(markInvoiceAsPaid, (state, action) => {
+            const idxOfInvoice = state.invoices.findIndex(
+                (invoice) => invoice.id === action.payload
+            )
+            state.invoices[idxOfInvoice]['status'] = EInvoiceStatus.PAID
         })
 })
