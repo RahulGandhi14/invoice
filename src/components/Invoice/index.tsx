@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import DeletePopup from './DeletePopup'
 import { Variants } from 'framer-motion'
+import InvoiceFooter from './InvoiceFooter'
 
 const Wrapper = styled(PageWrapper)`
     padding: 0 3rem;
@@ -67,6 +68,9 @@ const Invoice = () => {
                 />
                 <InvoiceBody invoice={currentInvoice} />
             </Wrapper>
+            <InvoiceFooter
+                status={currentInvoice?.status || EInvoiceStatus.DRAFT}
+            />
         </>
     )
 }

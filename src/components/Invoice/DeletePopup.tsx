@@ -12,15 +12,20 @@ import { H2 } from '../styled/Headings'
 import { themeType } from '../styled/Theme'
 import { fontStyle1 } from '../styled/Typography'
 
-const Modal = styled(motion.div)`
-    width: 100%;
-    max-width: 30rem;
-    padding: 2.75rem;
-    border-radius: 8px;
+const ModalWrapper = styled(motion.div)`
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 32rem;
+    padding: 1rem;
+`
+
+const Modal = styled(motion.div)`
+    width: 100%;
+    padding: 2.75rem;
+    border-radius: 8px;
     background-color: ${({ theme }: themeType) => theme.color.popup.bg};
     display: flex;
     flex-direction: column;
@@ -60,22 +65,25 @@ const DeletePopup = () => {
                     zIndex={100}
                     setOpen={setOpen}
                     children={
-                        <Modal>
-                            <H2>Confirm Deletion</H2>
-                            <Text>
-                                Are you sure you want to delete invoice{' '}
-                                {deleteInvoiceId}? This action cannot be undone.
-                            </Text>
-                            <Buttons>
-                                <Button variant="secondary">Cancel</Button>
-                                <Button
-                                    variant="danger"
-                                    onClick={onDeleteInvoice}
-                                >
-                                    Delete
-                                </Button>
-                            </Buttons>
-                        </Modal>
+                        <ModalWrapper>
+                            <Modal>
+                                <H2>Confirm Deletion</H2>
+                                <Text>
+                                    Are you sure you want to delete invoice{' '}
+                                    {deleteInvoiceId}? This action cannot be
+                                    undone.
+                                </Text>
+                                <Buttons>
+                                    <Button variant="secondary">Cancel</Button>
+                                    <Button
+                                        variant="danger"
+                                        onClick={onDeleteInvoice}
+                                    >
+                                        Delete
+                                    </Button>
+                                </Buttons>
+                            </Modal>
+                        </ModalWrapper>
                     }
                 />
             ) : null}
