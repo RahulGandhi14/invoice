@@ -11,12 +11,13 @@ import DeletePopup from './DeletePopup'
 import { Variants } from 'framer-motion'
 import InvoiceFooter from './InvoiceFooter'
 
-const Wrapper = styled(PageWrapper)`
+const InvoiceWrapper = styled(PageWrapper)`
+    height: auto;
     padding: 0 3rem;
-    margin-bottom: 3rem;
 
     @media only screen and (max-width: 700px) {
         padding: 0;
+        margin-bottom: 5.5rem; // Compansate for the footer
     }
 `
 
@@ -54,7 +55,7 @@ const Invoice = () => {
     return (
         <>
             <DeletePopup />
-            <Wrapper
+            <InvoiceWrapper
                 variants={variants}
                 initial="initial"
                 animate="animate"
@@ -67,10 +68,10 @@ const Invoice = () => {
                     }
                 />
                 <InvoiceBody invoice={currentInvoice} />
-            </Wrapper>
-            <InvoiceFooter
-                status={currentInvoice?.status || EInvoiceStatus.DRAFT}
-            />
+                <InvoiceFooter
+                    status={currentInvoice?.status || EInvoiceStatus.DRAFT}
+                />
+            </InvoiceWrapper>
         </>
     )
 }
